@@ -1,0 +1,36 @@
+---
+title: "Research"
+format: html
+---
+
+# 📚 Research
+My research interests include **applied microeconomics**, **causal inference**, and **statistical modeling**, with a focus on development economics and network analysis.
+
+
+---
+
+## 🔬 Honors Thesis
+
+**Title:** *Social Networks in Aid Allocation: A Comparative Analysis of Social Welfare*  
+**Advisor:** [Prof. Stephen O'Connell](https://www.stephenoconnell.org/) (Department of Economics, Emory University)  
+
+**Abstract:**  
+I develop and assess a social welfare program targeting plan that incorporates network spillover eﬀects. I compare it to traditional capacity and deprivation-based targeting methods. I analyze how spillover targeting aﬀects aid distribution, program eﬀectiveness among beneficiaries, and overall economic well-being and social cohesion of the community. The findings reveal that the overlap in recipient selection between spillover targeting and either of the traditional methods is significantly smaller than the overlap between the two traditional methods. Additionally, spillover targeting improves program eﬀectiveness among beneficiaries compared to traditional methods. Furthermore, spillover targeting enhances the overall economic well-being and social cohesion of the community more than other targeting strategies. This research highlights the importance of incorporating network spillover eﬀects into financial aid strategies and provides a framework for integrating network considerations into aid distribution policies.
+
+**Keywords**: Causal Inference, Network Spillover Eﬀects, Targeting, Policy Design
+
+---
+
+<!-- ## 📄 Other Topics of Interest
+
+- Identification of treatment effects under network interference  
+- Targeted program optimization under budget constraints  
+- Econometric theory of robust and adaptive inference  
+- Statistical foundations of decision rules under uncertainty
+
+--- -->
+
+## 📫 Get in Touch
+
+If you're interested in my research, feel free to reach out at  
+**tianqi.zhang [at] emory [dot] edu**

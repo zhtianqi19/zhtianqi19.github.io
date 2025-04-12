@@ -14,7 +14,7 @@ Whether you're self-studying, prepping for exams, or brushing up for research, I
 ## 🔍 Topics Covered
 
 ### 📘 [Real Analysis](real-analysis/index.qmd)
-> Rigorous foundations of analysis on the real line and \(\mathbb{R}^n\), including topology, compactness, and differentiability.
+> Foundations of analysis, including point-set topology, compactness, and differentiability.
 
 <details>
 <summary>What’s inside</summary>

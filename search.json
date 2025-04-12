@@ -18,7 +18,56 @@
     "href": "index.html",
     "title": "Tianqi Zhang",
     "section": "",
-    "text": "I am an undergraduate at Emory University studying Economics and Applied Mathematics.\nMy interests include applied microeconomics and econometric theory, with a focus on causal inference, policy evaluation, and statistical modeling. At the moment, this site mostly hosts my study notes.\nYou can reach me at tianqi.zhang[at]emory[dot]edu or connect on LinkedIn."
+    "text": "Undergraduate at Emory University\nEconomics & Applied Mathematics"
+  },
+  {
+    "objectID": "index.html#about-me",
+    "href": "index.html#about-me",
+    "title": "Tianqi Zhang",
+    "section": "👋 About Me",
+    "text": "👋 About Me\nI’m an undergraduate at Emory University, majoring in Economics and Applied Mathematics.\nMy interests include:\n\nEconometrics, with a focus on causal inference and policy evaluation\nApplied microeconomics, with a focus on development economics\n\nThis site currently hosts my curated study notes and projects in probability theory, real analysis, and causal inference."
+  },
+  {
+    "objectID": "index.html#study-notes",
+    "href": "index.html#study-notes",
+    "title": "Tianqi Zhang",
+    "section": "📘 Study Notes",
+    "text": "📘 Study Notes\nExplore my study notes organized by topic:\n\nReal Analysis\nTopology, compactness, convergence, differential mappings, and more.\nProbability & Statistical Inference\nMeasure-theoretic probability: sigma-algebras, stochastic convergence, density transformations.\n\nYou can find all notes under the Study Notes section."
+  },
+  {
+    "objectID": "index.html#current-projects",
+    "href": "index.html#current-projects",
+    "title": "Tianqi Zhang",
+    "section": "🧪 Current Projects",
+    "text": "🧪 Current Projects\n\nRefining my notes into a self-contained resource for others studying analysis & probability\n\nReading on network-based targeting and optimization in policy design"
+  },
+  {
+    "objectID": "index.html#contact",
+    "href": "index.html#contact",
+    "title": "Tianqi Zhang",
+    "section": "📫 Contact",
+    "text": "📫 Contact\nYou can reach me at\ntianqi.zhang [at] emory [dot] edu\nor connect with me on LinkedIn"
+  },
+  {
+    "objectID": "research/index.html",
+    "href": "research/index.html",
+    "title": "Research",
+    "section": "",
+    "text": "My research interests include applied microeconomics, causal inference, and statistical modeling, with a focus on development economics and network analysis.\n\n\n\nTitle: Social Networks in Aid Allocation: A Comparative Analysis of Social Welfare\nAdvisor: Prof. Stephen O’Connell (Department of Economics, Emory University)\nAbstract:\nI develop and assess a social welfare program targeting plan that incorporates network spillover eﬀects. I compare it to traditional capacity and deprivation-based targeting methods. I analyze how spillover targeting aﬀects aid distribution, program eﬀectiveness among beneficiaries, and overall economic well-being and social cohesion of the community. The findings reveal that the overlap in recipient selection between spillover targeting and either of the traditional methods is significantly smaller than the overlap between the two traditional methods. Additionally, spillover targeting improves program eﬀectiveness among beneficiaries compared to traditional methods. Furthermore, spillover targeting enhances the overall economic well-being and social cohesion of the community more than other targeting strategies. This research highlights the importance of incorporating network spillover eﬀects into financial aid strategies and provides a framework for integrating network considerations into aid distribution policies.\nKeywords: Causal Inference, Network Spillover Eﬀects, Targeting, Policy Design\n\n\n\n\n\nIf you’re interested in my research, feel free to reach out at\ntianqi.zhang [at] emory [dot] edu"
+  },
+  {
+    "objectID": "research/index.html#honors-thesis",
+    "href": "research/index.html#honors-thesis",
+    "title": "Research",
+    "section": "",
+    "text": "Title: Social Networks in Aid Allocation: A Comparative Analysis of Social Welfare\nAdvisor: Prof. Stephen O’Connell (Department of Economics, Emory University)\nAbstract:\nI develop and assess a social welfare program targeting plan that incorporates network spillover eﬀects. I compare it to traditional capacity and deprivation-based targeting methods. I analyze how spillover targeting aﬀects aid distribution, program eﬀectiveness among beneficiaries, and overall economic well-being and social cohesion of the community. The findings reveal that the overlap in recipient selection between spillover targeting and either of the traditional methods is significantly smaller than the overlap between the two traditional methods. Additionally, spillover targeting improves program eﬀectiveness among beneficiaries compared to traditional methods. Furthermore, spillover targeting enhances the overall economic well-being and social cohesion of the community more than other targeting strategies. This research highlights the importance of incorporating network spillover eﬀects into financial aid strategies and provides a framework for integrating network considerations into aid distribution policies.\nKeywords: Causal Inference, Network Spillover Eﬀects, Targeting, Policy Design"
+  },
+  {
+    "objectID": "research/index.html#get-in-touch",
+    "href": "research/index.html#get-in-touch",
+    "title": "Research",
+    "section": "",
+    "text": "If you’re interested in my research, feel free to reach out at\ntianqi.zhang [at] emory [dot] edu"
   },
   {
     "objectID": "study-notes/probability/index.html",
@@ -32,20 +81,20 @@
     "href": "study-notes/probability/index.html#contents",
     "title": "Probability and Statistical Inference",
     "section": "📚 Contents",
-    "text": "📚 Contents\n\nChapters\n\nRandomness\n\nSampling\n\nDiscrete Probability Measures\n\nLebesgue Measure\n\nSigma-Algebra\n\nMeasurable Maps\n\nLebesgue Integration\n\n\n\n\nAppendices\n\nAppendix A: Some Proofs\n\nAppendix B: Poisson from Binomial\n\n\nFor full references and background reading, see:\n\nReal Analysis: Measure Theory, Integration, and Hilbert Spaces by Stein and Shakarchi"
+    "text": "📚 Contents\n\nChapters\n\nRandomness\n\nSampling\n\nDiscrete Probability Measures\n\nLebesgue Measure\n\nSigma-Algebra\n\nMeasurable Maps\n\nLebesgue Integration\n\n\n\n\nAppendices - Soem interesting proofs\n\n\nPoisson from Binomial\n\n\nFor full references and background reading, see:$$\n\nReal Analysis: Measure Theory, Integration, and Hilbert Spaces by Stein and Shakarchi"
   },
   {
     "objectID": "study-notes/index.html",
     "href": "study-notes/index.html",
     "title": "Study Notes",
     "section": "",
-    "text": "Welcome to my personal collection of study notes across advanced topics in mathematics and statistics. These notes are designed to be rigorous yet concise, offering clear explanations, theorem-proof structure, and examples where useful.\nWhether you’re self-studying, prepping for exams, or brushing up for research, I hope you’ll find something insightful here.\n\n\n\n\n\n\nRigorous foundations of analysis on the real line and (^n), including topology, compactness, and differentiability.\n\n\n\nWhat’s inside\n\n\nThe Real Line and Euclidean Space\n\nTopology of Euclidean Space\n\nCompact and Connected Sets\n\nUniform Convergence\n\nInverse and Implicit Function Theorems\n\nFourier Analysis\n\n\n\n\n\n\n\n\nProbability theory viewed through the lens of measure theory. Designed for readers with a solid background in real analysis.\n\n\n\nWhat’s inside\n\n\nSigma-Algebras and Measures\n\nDiscrete & Continuous Distributions\n\nStochastic Convergence\n\nLebesgue Integration\n\nDensity Transformation and PDFs\n\nAsymptotic Theory\n\n\n\n\nFeel free to explore and reach out if you have thoughts or suggestions!"
+    "text": "Welcome to my personal collection of study notes across advanced topics in mathematics and statistics. These notes are designed to be rigorous yet concise, offering clear explanations, theorem-proof structure, and examples where useful.\nWhether you’re self-studying, prepping for exams, or brushing up for research, I hope you’ll find something insightful here.\n\n\n\n\n\n\nFoundations of analysis, including point-set topology, compactness, and differentiability.\n\n\n\nWhat’s inside\n\n\nThe Real Line and Euclidean Space\n\nTopology of Euclidean Space\n\nCompact and Connected Sets\n\nUniform Convergence\n\nInverse and Implicit Function Theorems\n\nFourier Analysis\n\n\n\n\n\n\n\n\nProbability theory viewed through the lens of measure theory. Designed for readers with a solid background in real analysis.\n\n\n\nWhat’s inside\n\n\nSigma-Algebras and Measures\n\nDiscrete & Continuous Distributions\n\nStochastic Convergence\n\nLebesgue Integration\n\nDensity Transformation and PDFs\n\nAsymptotic Theory\n\n\n\n\nFeel free to explore and reach out if you have thoughts or suggestions!"
   },
   {
     "objectID": "study-notes/index.html#topics-covered",
     "href": "study-notes/index.html#topics-covered",
     "title": "Study Notes",
     "section": "",
-    "text": "Rigorous foundations of analysis on the real line and (^n), including topology, compactness, and differentiability.\n\n\n\nWhat’s inside\n\n\nThe Real Line and Euclidean Space\n\nTopology of Euclidean Space\n\nCompact and Connected Sets\n\nUniform Convergence\n\nInverse and Implicit Function Theorems\n\nFourier Analysis\n\n\n\n\n\n\n\n\nProbability theory viewed through the lens of measure theory. Designed for readers with a solid background in real analysis.\n\n\n\nWhat’s inside\n\n\nSigma-Algebras and Measures\n\nDiscrete & Continuous Distributions\n\nStochastic Convergence\n\nLebesgue Integration\n\nDensity Transformation and PDFs\n\nAsymptotic Theory\n\n\n\n\nFeel free to explore and reach out if you have thoughts or suggestions!"
+    "text": "Foundations of analysis, including point-set topology, compactness, and differentiability.\n\n\n\nWhat’s inside\n\n\nThe Real Line and Euclidean Space\n\nTopology of Euclidean Space\n\nCompact and Connected Sets\n\nUniform Convergence\n\nInverse and Implicit Function Theorems\n\nFourier Analysis\n\n\n\n\n\n\n\n\nProbability theory viewed through the lens of measure theory. Designed for readers with a solid background in real analysis.\n\n\n\nWhat’s inside\n\n\nSigma-Algebras and Measures\n\nDiscrete & Continuous Distributions\n\nStochastic Convergence\n\nLebesgue Integration\n\nDensity Transformation and PDFs\n\nAsymptotic Theory\n\n\n\n\nFeel free to explore and reach out if you have thoughts or suggestions!"
   }
 ]

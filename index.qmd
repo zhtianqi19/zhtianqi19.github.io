@@ -1,11 +1,61 @@
 ---
-title: "Tianqi Zhang"
+title: ""
 format: html
+page-layout: full
 ---
 
-I am an undergraduate at Emory University studying Economics and Applied Mathematics.
+<div align="center">
 
-My interests include applied microeconomics and econometric theory, with a focus on causal inference, policy evaluation, and statistical modeling. At the moment, this site mostly hosts my study notes.
+<img src="images/me.jpeg" alt="Tianqi Zhang" width="180px" style="margin-bottom: 1em; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
 
-You can reach me at tianqi.zhang\[at\]emory\[dot\]edu or connect on [LinkedIn](https://www.linkedin.com/in/tianqizhang/).
 
+# Tianqi Zhang
+
+*Undergraduate at Emory University*  
+*Economics & Applied Mathematics*
+
+</div>
+
+---
+
+## 👋 About Me
+
+I’m an undergraduate at **Emory University**, majoring in **Economics** and **Applied Mathematics**.
+
+My interests include:
+
+- **Econometrics**, with a focus on causal inference and policy evaluation
+- **Applied microeconomics**, with a focus on development economics
+
+This site currently hosts my curated study notes and projects in probability theory, real analysis, and causal inference.
+
+---
+
+## 📘 Study Notes
+
+Explore my study notes organized by topic:
+
+- [**Real Analysis**](study-notes/real-analysis/index.qmd)  
+  *Topology, compactness, convergence, differential mappings, and more.*
+
+- [**Probability & Statistical Inference**](study-notes/probability/index.qmd)  
+  *Measure-theoretic probability: sigma-algebras, stochastic convergence, density transformations.*
+
+You can find all notes under the [**Study Notes**](study-notes/index.qmd) section.
+
+---
+
+## 🧪 Current Projects
+
+- Refining my notes into a self-contained resource for others studying analysis & probability  
+- Reading on network-based targeting and optimization in policy design  
+
+---
+
+## 📫 Contact
+
+You can reach me at  
+**tianqi.zhang [at] emory [dot] edu**  
+or connect with me on [**LinkedIn**](https://www.linkedin.com/in/YOUR_LINK_HERE)
+
+---

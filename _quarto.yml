@@ -8,12 +8,14 @@ website:
     left:
       - text: Home
         file: index.qmd
-      - text: About
-        file: about.qmd
-      - text: CV
-        # href: cv.pdf
+      # - text: About
+      #   file: about.qmd
+      # - text: CV
+      #   href: cv.pdf
       - text: Study Notes
         file: study-notes/index.qmd
+      - text: "Research"
+        href: research/index.qmd
 
 format:
   html:
