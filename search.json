@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "study-notes/real-analysis/index.html",
+    "href": "study-notes/real-analysis/index.html",
+    "title": "Undergraduate Real Analysis",
+    "section": "",
+    "text": "Content coming soon. This page will include some proofs on sequences, limits, continuity, point-set topology, and foundational integration theory. The primary reference is Elementary Classical Analysis by Marsden.\n\nChapters"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Tianqi Zhang",
+    "section": "",
+    "text": "I am an undergraduate at Emory University studying Economics and Applied Mathematics.\nMy interests include applied microeconomics and econometric theory, with a focus on causal inference, policy evaluation, and statistical modeling. At the moment, this site mostly hosts my study notes.\nYou can reach me at tianqi.zhang[at]emory[dot]edu or connect on LinkedIn."
+  },
+  {
+    "objectID": "study-notes/probability/index.html",
+    "href": "study-notes/probability/index.html",
+    "title": "Probability and Statistical Inference",
+    "section": "",
+    "text": "Welcome to my study notes on Probability and Statistical Inference, where we delve into foundational concepts in probability theory through the lens of measure theory. These notes aim to provide a structured journey that bridges rigorous mathematical principles with their practical applications.\nThis material is intended for readers with a solid background in undergraduate-level real analysis, including: - Sequence and function convergence and limits\n- Point-set topology\n- Integration theory\nBy following this text, you will explore topics ranging from fundamental randomness and sigma-algebras to Lebesgue integration and advanced probability concepts such as stochastic convergence and density transformations.\nI hope you find this document insightful as you navigate the beauty and rigor of probability and measure theory."
+  },
+  {
+    "objectID": "study-notes/probability/index.html#contents",
+    "href": "study-notes/probability/index.html#contents",
+    "title": "Probability and Statistical Inference",
+    "section": "📚 Contents",
+    "text": "📚 Contents\n\nChapters\n\nRandomness\n\nSampling\n\nDiscrete Probability Measures\n\nLebesgue Measure\n\nSigma-Algebra\n\nMeasurable Maps\n\nLebesgue Integration\n\n\n\n\nAppendices\n\nAppendix A: Some Proofs\n\nAppendix B: Poisson from Binomial\n\n\nFor full references and background reading, see:\n\nReal Analysis: Measure Theory, Integration, and Hilbert Spaces by Stein and Shakarchi"
+  },
+  {
+    "objectID": "study-notes/index.html",
+    "href": "study-notes/index.html",
+    "title": "Study Notes",
+    "section": "",
+    "text": "Welcome to my personal collection of study notes across advanced topics in mathematics and statistics. These notes are designed to be rigorous yet concise, offering clear explanations, theorem-proof structure, and examples where useful.\nWhether you’re self-studying, prepping for exams, or brushing up for research, I hope you’ll find something insightful here.\n\n\n\n\n\n\nRigorous foundations of analysis on the real line and (^n), including topology, compactness, and differentiability.\n\n\n\nWhat’s inside\n\n\nThe Real Line and Euclidean Space\n\nTopology of Euclidean Space\n\nCompact and Connected Sets\n\nUniform Convergence\n\nInverse and Implicit Function Theorems\n\nFourier Analysis\n\n\n\n\n\n\n\n\nProbability theory viewed through the lens of measure theory. Designed for readers with a solid background in real analysis.\n\n\n\nWhat’s inside\n\n\nSigma-Algebras and Measures\n\nDiscrete & Continuous Distributions\n\nStochastic Convergence\n\nLebesgue Integration\n\nDensity Transformation and PDFs\n\nAsymptotic Theory\n\n\n\n\nFeel free to explore and reach out if you have thoughts or suggestions!"
+  },
+  {
+    "objectID": "study-notes/index.html#topics-covered",
+    "href": "study-notes/index.html#topics-covered",
+    "title": "Study Notes",
+    "section": "",
+    "text": "Rigorous foundations of analysis on the real line and (^n), including topology, compactness, and differentiability.\n\n\n\nWhat’s inside\n\n\nThe Real Line and Euclidean Space\n\nTopology of Euclidean Space\n\nCompact and Connected Sets\n\nUniform Convergence\n\nInverse and Implicit Function Theorems\n\nFourier Analysis\n\n\n\n\n\n\n\n\nProbability theory viewed through the lens of measure theory. Designed for readers with a solid background in real analysis.\n\n\n\nWhat’s inside\n\n\nSigma-Algebras and Measures\n\nDiscrete & Continuous Distributions\n\nStochastic Convergence\n\nLebesgue Integration\n\nDensity Transformation and PDFs\n\nAsymptotic Theory\n\n\n\n\nFeel free to explore and reach out if you have thoughts or suggestions!"
+  }
+]
