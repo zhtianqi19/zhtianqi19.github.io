@@ -1,0 +1,46 @@
+---
+title: "Probability and Statistical Inference"
+format: html
+---
+
+Welcome to my study notes on **Probability and Statistical Inference**, where we delve into foundational concepts in probability theory through the lens of measure theory. These notes aim to provide a structured journey that bridges rigorous mathematical principles with their practical applications.
+
+This material is intended for readers with a solid background in undergraduate-level real analysis, including:
+- Sequence and function convergence and limits  
+- Point-set topology  
+- Integration theory  
+
+By following this text, you will explore topics ranging from fundamental randomness and sigma-algebras to Lebesgue integration and advanced probability concepts such as stochastic convergence and density transformations.
+
+I hope you find this document insightful as you navigate the beauty and rigor of probability and measure theory.
+
+## 📚 Contents
+### Chapters
+
+1. [Randomness](pdfs/chapter-01-randomness.pdf)  
+2. [Sampling](pdfs/chapter-02-sampling.pdf)  
+3. [Discrete Probability Measures](pdfs/chapter-03-discrete.pdf)  
+4. [Lebesgue Measure](pdfs/chapter-04-lebesgue.pdf)  
+5. [Sigma-Algebra](pdfs/chapter-05-sigma-algebra.pdf)  
+6. [Measurable Maps](pdfs/chapter-06-measurable-maps.pdf)  
+<!-- 7. [Stochastic Convergence](pdfs/chapter-07-stochastic.pdf)  
+8. [Bayes’ Rule](pdfs/chapter-08-bayes.pdf)  
+9. [Combinatorics and Estimating Proportions](pdfs/chapter-09-combinatorics.pdf)  
+10. [Cumulative Density Function](pdfs/chapter-10-cdf.pdf)  
+11. [Probability Density Function](pdfs/chapter-11-pdf.pdf)  
+12. [Transformation of Density](pdfs/chapter-12-transform.pdf)   -->
+13. [Lebesgue Integration](pdfs/chapter-13-integration.pdf)  
+<!-- 14. [MGFs and Characteristic Functions](pdfs/chapter-14-mgf.pdf)  
+15. [The General Prediction Problem](pdfs/chapter-15-prediction.pdf)  
+16. [The Gaussian Distribution](pdfs/chapter-16-gaussian.pdf)  
+17. [Introduction to Asymptotic Theory](pdfs/chapter-17-asymptotic.pdf) -->
+
+### Appendices
+
+- [Appendix A: Some Proofs](pdfs/appendix-a-proofs.pdf)  
+- [Appendix B: Poisson from Binomial](pdfs/appendix-b-poisson.pdf)
+---
+
+For full references and background reading, see:
+
+> [_Real Analysis: Measure Theory, Integration, and Hilbert Spaces_ by Stein and Shakarchi](https://press.princeton.edu/books/hardcover/9780691113869/real-analysis?srsltid=AfmBOoomihathIAitkPFegt30HUeOqi0tzB_kyRvrO_ASRr7b_UX62yY)

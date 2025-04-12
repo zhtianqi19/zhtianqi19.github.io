@@ -1,0 +1,11 @@
+---
+title: "Tianqi Zhang"
+format: html
+---
+
+I am an undergraduate at Emory University studying Economics and Applied Mathematics.
+
+My interests include applied microeconomics and econometric theory, with a focus on causal inference, policy evaluation, and statistical modeling. At the moment, this site mostly hosts my study notes.
+
+You can reach me at tianqi.zhang\[at\]emory\[dot\]edu or connect on [LinkedIn](https://www.linkedin.com/in/tianqizhang/).
+

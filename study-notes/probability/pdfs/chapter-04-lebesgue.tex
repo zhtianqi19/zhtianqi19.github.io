@@ -1,0 +1,128 @@
+\include{preamble}
+
+\title{\textbf{% ECON 620\\
+               Probability and Statistical Inference}}
+\author{Tianqi Zhang\\
+Emory University}
+\date{Apr 17th 2025}
+
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{1} % Only show sections in the table of contents
+
+\setcounter{section}{3}
+\section{Lebesgue Measure}
+\subsection{Motivation (Number Theory Version)}
+Focus on half closed interval. Random draws $\omega \in [0,1]$: $\mathbb{P}(\omega \in [0,0.47)) = ?$
+\begin{itemize}
+    \item Pick a number: \(0.xy\ldots\)
+    \item Either \(x \in \{0,1,2,3\}\) or \(x = 4 \cap y \in \{0, 1, \ldots, 0.6\}\).
+\end{itemize}
+\[
+\#\text{ possibilities} = (4 \cdot 10) + (1 \cdot 7) = 47 \text{ out of } (10 \cdot 10) \text{ possibilities}.
+\]
+\[
+\mathbb{P}(w \in [0,0.47]) = \frac{47}{100} = 0.47 \quad \text{\textcolor{teal}{Some shape of Uniform CDF}}.
+\]
+
+\subsection{Construction}
+\begin{df}{Lebesgue Measure on $\R\cap [0,1]$}\\
+More Generally, for \(a, b \in \mathbb{R} \cap [0,1]\), \(a < b\), Lebesgue Measure is a measure defined on the power set of $\mathbb{R} \cap [0,1]$ \textcolor{red}{(Warning! this is ideal but is not true. reason to be discussed in the next chapter.)} onto $\R$ such that the mapping is non-negative and sigma-additive. It is defined by the following: 
+\[
+\mathbb{P}([0,a)) = a, \quad \mathbb{P}([0,b)) = b.
+\]
+\[
+\mathbb{P}([a,b)) = \mathbb{P}([0,b)) - \mathbb{P}([0,a)) = b - a.
+\]
+\end{df}
+
+\begin{prop}{Additional Features on Lebesgue Measure}
+\begin{itemize}
+        \item Unity: $\mathbb{P}([0, 1]) = 1$ 
+    	\item Translational Invariant: $\mathbb{P}(x + A) = \mathbb{P}(A), \ \forall x \in \mathbb{R}$
+\end{itemize}
+\end{prop}
+
+
+\begin{prop}{}
+\begin{enumerate}
+    \item \textbf{Open interval: } \(\mathbb{P}((a,b)) = \lim_{n \to 0} \mathbb{P}((a+\frac{1}{n},b)) = \lim_{n \to 0} b-(a+\frac{1}{n}) = b-a\).
+    \item \textbf{Single element: } \(\mathbb{P}(\qty{a}) = \mathbb{P}([a,b]) - \mathbb{P}((a,b)) = b-a - (b-a) = 0 \).
+    \item \textbf{Closed interval: } \(\mathbb{P}([a,b]) = \mathbb{P}([a,b)) + \mathbb{P}(\{b\}) = \mathbb{P}([a,b]) = b - a.\)
+\end{enumerate}
+\end{prop}
+
+\begin{rmk}
+Using Kolmogorov axioms for measures, \(A \subset [0,1]\), finite or countable, \(\mathbb{P}(A) = 0\).
+As a result, \(\mathbb{P}(\mathbb{Q} \cap [0,1]) = 0.\)
+\end{rmk}
+
+%
+%\newpage
+%\section*{Outer Measure}
+%\subsection*{Motivation and Definition of Outer Measure}
+%Recall the definition of upper and lower Darboux sum in Riemann integral setting: 
+%$$U(f) = \sum_{i=1}^N \sup_{x\in [x_i, x_{i+1}]}{f(x)} \cdot \underbrace{(x_{i+1} - x_i)}_{\text{length}}$$
+%Definition of Riemann non-integrable involves the upper integral and the lower integral as two limits do not agree, which likely boils down to some partitions $[x_i, x_{i+1}]$ not well-defined. Therefore, to propose a fix, we are motivated to properly define the "length" of any general subset of $\R$. \\
+%
+%\begin{df}{Length}
+%    The length $\ell(I)$ of some open interval $I\subset \R$ is a function defined by
+%    $$\ell(I) =
+%    \begin{cases}
+%         b-a, & I = (b-a), a<b, a, b\in \R\\
+%         0,  & I = \emptyset, \\
+%         \infty & I = (-\infty, a), a\in \R\\
+%         \infty & I = (a, \infty), a\in \R
+%    \end{cases}$$
+%\end{df}
+%Then suppose $A\subset \R$. The size of $A$ can at most be the \textbf{sum of lengths of a sequence of open intervals $I$ whose union contains} $A$. Taking the infimum of such sums over all possible sequences of $I$, we obtain the outer measure of $A$, i.e.\\
+%
+%\begin{df}{Outer Measure, $\abs{A}$}
+%    For $A\subset \R$,
+%    $$\abs{A} \equiv \inf\qty{\sum_{k=1}^\infty \ell(I_k)\mid I_k \text{ open, } A\subset \bigcup_{k=1}^\infty I_k }$$
+%\end{df}
+%
+%\begin{prop}{Finite sets have outer measure 0} 
+%\end{prop}
+%
+%\subsubsection{Properties of Outer Measure}
+%\begin{prop}{Countable subsets of $\R$ have outer measure 0} 
+%\end{prop}
+%
+%\begin{prop}{Order preserving of outer measure}\\
+%If $A\subset B\subset \R$, then $\abs{A}\leq\abs{B}$
+%\end{prop}
+%
+%\begin{df}{Translation}
+%    For any $A\subset \R, t\in \R$, the translation $t+A$ is defined by
+%    \[t+A = \qty{t+a \mid a\in A}\]
+%\end{df}
+%Note that the length function should be translation invariant. Therefore, we obtain the proposition that outer measure is translation invariant. \\
+%
+%\begin{prop}{Outer measure is translation invariant}\\
+%Suppose $t\in \R$ and $A\subset \R$, then $\abs{t+A} = \abs{A}$.
+%\end{prop}
+%
+%\begin{prop}{Countable Sub-additivity of outer measure}
+%Suppose $A_1, A_2, \dots, \subset \R$. Then 
+%$$\abs{\bigcup_{k=1}^\infty A_k} \leq \sum_{k=1}^\infty \abs{A_k}$$	
+%Note that this implies finite sub-additivity which could come handy in proof techniques: 
+%$$\abs{A_1\cup \dots \cup A_n} \leq \abs{A_1} + \dots + \abs{A_n}$$
+%\end{prop}
+%
+%\subsection*{Outer Measure of Closed Bounded Interval}
+%It is apparent for any closed interval $[a, b]$, we can construct a sequence of open cover $(a-\ep, b+\ep)$ and arbitrarily shrink $\ep$. We obtain $\abs{[a, b]} \leq b-a$. However, the other direction requires completeness of $\R$. \\
+%
+%\begin{prop}{$\abs{[a, b]} = b-a$}\\
+%Suppose $a, b\in \R, a<b$. Then $\abs{[a, b]} = b-a$. 
+%Proof: \ref{prof:closed interval}
+%\end{prop}
+%
+%\begin{prop}{Non-trivial intervals are uncountable}\\
+%	Every \textbf{interval} in $\R$ that contains at least two distinct terms is uncountable. 
+%\end{prop}
+%
+%\begin{prop}{Non-additivity}\\
+%	$\exists A, B\subset \R$ disjoint such that $\abs{A\cup B} \neq \abs{A} + \abs{B}$. 
+%\end{prop}
+\end{document}

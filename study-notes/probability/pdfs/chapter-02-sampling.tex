@@ -1,0 +1,160 @@
+\include{preamble}
+
+\title{\textbf{% ECON 620\\
+               Probability and Statistical Inference}}
+\author{Tianqi Zhang\\
+Emory University}
+\date{Apr 17th 2025}
+
+\begin{document}
+
+\newpage
+\maketitle
+\setcounter{tocdepth}{1} % Only show sections in the table of contents
+
+\setcounter{section}{1}
+\section{Sampling}
+\subsection{Sample Space and Probability Models}
+\begin{df}{Sample Space}\\
+The specification of a probability model requires:
+\begin{enumerate}
+	\item A sample space, \(\Omega\): The set of all possible outcomes in the problem.
+	\item A probability assignment for these outcomes (subsets of $\Omega$).
+\end{enumerate}
+\
+\end{df}
+Consider the following examples to help understanding the construction of probability models: 
+\begin{eg}{Coin Tossing}
+\[
+\Omega = \{\text{H}, \text{T}\}.
+\]
+\begin{itemize}
+    \item If assuming the coin is balanced, we state \(P(\text{H}) = P(\text{T}) = \frac{1}{2}\).
+    \item This assumption can be extended to all subsets of \(\Omega\).
+    \item Assumption can be justified empirically using the \textbf{Law of Large Numbers (LLN)}:  
+    \[
+    P(A) = \plim_{n \to \infty} f_n(A).
+    \]
+    For a proper definition of "$\plim$"
+\end{itemize}
+\end{eg}
+
+To generalize the above results: \\
+
+\begin{df}{Uniform probability measure/distribution}
+\begin{itemize}
+    \item \(\Omega = \qty{\omega_1, \dots, \omega_N}\) or countable
+    \item \textbf{Uniform probability measure (distribution)}:  
+    For any \(A \subseteq \Omega\),  
+    \[
+    P(A) = \frac{|A|}{|\Omega|}.
+    \]
+    and define 
+    \[P(\omega_i) = \frac{1}{N}, \forall i \in \{1, 2, \dots, N\}\] 
+    \item \textbf{Warning on abuse of notation:} Note that this is not a proper probability measure, as it assigns probabilities to individual elements, not subsets.
+    $$P(\omega_i) \equiv P(\qty{\omega_i})$$
+    even though $\omega_i\in \Omega$, $\qty{\omega_i}\subseteq \Omega$, and $\qty{\omega_i} \in \mathscr{P}(\Omega)$ as the power set.
+    	
+\end{itemize}
+Therefore, we have the above function $P$ defined to be $ \mathscr{P}(\Omega) \rightarrow [0, 1]$ 
+\end{df}
+
+\begin{eg}{Fair Die}
+\[
+\Omega = \{1, 2, 3, 4, 5, 6\}.
+\]
+\begin{itemize}
+    \item Let \(A =\) "even numbers" \( = \{2, 4, 6\}\).  
+    Then:
+    \[
+    P(A) = \frac{|A|}{|\Omega|} = \frac{3}{6} = \frac{1}{2}.
+    \]
+\end{itemize}
+\end{eg}
+
+
+\begin{rmk}{Conditioning and Specifying $\Omega$ is crucial}
+
+\end{rmk}
+\begin{eg}{Twin paradox example}
+	\begin{itemize}
+    \item \textbf{Assumptions:}
+    \begin{itemize}
+        \item (i) Gender of newborn: \(P(\text{Girl}) = P(\text{Boy}) = \frac{1}{2}\).
+        \item (ii) Gender of one child is independent of the gender of the other child.
+    \end{itemize}
+    \item Known: A family has two children, one of whom is a girl.  
+    \item Question: What is \(P(\text{both children are girls})\)?
+    \begin{itemize}
+        \item Case (i): If we know the gender of the first child, then $\Omega$ considers only the second child
+        \[
+        \Omega_i = \{\text{G}, \text{B}\}.
+        \]
+        Then:
+        \[
+        P(\text{G}) = \frac{1}{2}.
+        \]
+        \item Case (ii): If we know at least one child is a girl:  
+        \[
+        \Omega_{ii} = \{\text{GG}, \text{GB}, \text{BG}\}.
+        \]
+        Then:
+        \[
+        P(\text{GG}) = \frac{1}{3}.
+        \]
+    \end{itemize}
+\end{itemize}
+\end{eg}
+
+\subsection{Bernoulli Trials and Binomial Distribution}
+
+\begin{eg}{Bernoulli Distribution}
+\begin{itemize}
+\item Suppose that we have a sequence of \(n\) independent experiments
+$$P(\text{Success}) = p,\ P(\text{Failure}) = 1 - p$$
+\item We have the sample space: 
+	\[
+    \Omega = \{0, 1\}^n \quad \text{(Cartesian product of the simple $\qty{0, 1}$)}.
+    \]
+\item A typical element (draw) \(\omega \in \Omega\) is \(\omega = (\omega_1, \omega_2, \dots, \omega_n)\) as a sequence.
+\item Define $S_n: \Omega \rightarrow \R$, $S_n(\omega) = \sum_{i=1}^n \omega_i$ to be the count of success. 
+\end{itemize}
+\end{eg}
+
+\begin{clm}
+Then the \textbf{independent experiment} with its probability measure: 
+$$P(\omega) = p^{S_n(\omega)}(1-p)^{n-S_n(\omega)}$$
+\end{clm}
+
+\begin{rmk}
+\(S_n\) is a \textbf{random variable}, a function from $\Omega$ endowed with the probability measure $P$ and maps outcomes to \(\mathcal{S} \equiv \{0, 1, \dots, n\}\).	
+\end{rmk}
+
+\noindent Since the original Bernoulli trial is simple enough to be binary: $\Omega = \qty{0, 1}$, the count of success can be reduced into the simple sum in the sequence. Therefore, we can then define a new probability measure (distribution) $P^{S_n}$ on $S$ such that: 
+\begin{thm}{Push-Forward Measure}
+We can then define a new probability measure (distribution) $P^{S_n}$ on $S$ such that
+$$\forall x\in S, P(x) \equiv \sum_{\omega\in S_n^{-1}(x)} P(\omega) = P\qty[S_n^{-1}(x)] \equiv P^{S_n}(x)$$
+Where 
+$$S_n^{-1}(A) \equiv \qty{\omega\in \Omega, S_n(\omega) \in A}\quad \text{is the pre-image}$$
+\end{thm}
+ 
+ \noindent For computation purposes: 
+ $$\forall x\in \mathcal{S}, \ P^{S_n}(x) = \abs{S_n^{-1}(x)} p^x(1-p)^{n-x}$$
+ Intuitively speaking, the pre-image $S_n^{-1}(x)$ indicates all possible sequences $\omega$ such that they contain exactly $x$ counts of success. We give the calculation as follows
+
+\begin{df}{Binomial number}
+$$\abs{S_n^{-1}(x)} = \binom{n}{x} = \frac{n!}{x!(n-x)!} = \binom{n}{n-x}$$
+To be the number of ways to pick $x$ elements from $n$ elements without order. 	
+\end{df}
+
+
+\begin{df}{Binomial Distribution}\\
+Binomial Distribution: $Binom(n, p)$ is the push-forward probability measure of the Bernoulli trial with $n$ experiments and success probability $p$ via the random variable $S_n$ which counts success. 
+$$\forall x \in \mathcal{S}, P^{S_n}(x) =  \binom{n}{x} p^x(1-p)^{n-x}$$
+and
+  \[\sum_{n=0}^n \binom{n}{x} p^x (1-p)^{n-x} = 1\]
+\end{df}
+
+\noindent We say the \textbf{random variable $S_n$ follows the binomial distribution}, $S_n\sim Binom(n, p)$.  
+
+\end{document}

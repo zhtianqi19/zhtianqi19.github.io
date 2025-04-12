@@ -1,0 +1,48 @@
+---
+title: "Study Notes"
+format: html
+---
+
+# 📚 Study Notes
+
+Welcome to my personal collection of study notes across advanced topics in mathematics and statistics. These notes are designed to be rigorous yet concise, offering clear explanations, theorem-proof structure, and examples where useful.
+
+Whether you're self-studying, prepping for exams, or brushing up for research, I hope you'll find something insightful here.
+
+---
+
+## 🔍 Topics Covered
+
+### 📘 [Real Analysis](real-analysis/index.qmd)
+> Rigorous foundations of analysis on the real line and \(\mathbb{R}^n\), including topology, compactness, and differentiability.
+
+<details>
+<summary>What’s inside</summary>
+
+- The Real Line and Euclidean Space  
+- Topology of Euclidean Space  
+- Compact and Connected Sets  
+- Uniform Convergence  
+- Inverse and Implicit Function Theorems  
+- Fourier Analysis  
+</details>
+
+---
+
+### 📗 [Probability and Statistical Inference](probability/index.qmd)
+> Probability theory viewed through the lens of measure theory. Designed for readers with a solid background in real analysis.
+
+<details>
+<summary>What’s inside</summary>
+
+- Sigma-Algebras and Measures  
+- Discrete & Continuous Distributions  
+- Stochastic Convergence  
+- Lebesgue Integration  
+- Density Transformation and PDFs  
+- Asymptotic Theory  
+</details>
+
+---
+
+Feel free to explore and reach out if you have thoughts or suggestions!

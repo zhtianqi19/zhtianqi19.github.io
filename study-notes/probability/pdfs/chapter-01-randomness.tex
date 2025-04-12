@@ -1,0 +1,123 @@
+\include{preamble}
+
+\title{\textbf{% ECON 620\\
+               Probability and Statistical Inference}}
+\author{Tianqi Zhang\\
+Emory University}
+\date{Apr 17th 2025}
+
+
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{1} % Only show sections in the table of contents
+%\tableofcontents
+
+\section{Randomness}
+
+\subsection{Randomness: A Model of Empirical Observations}
+\begin{df}{Latent Space $\Omega$}\\
+	We denote the latent space $\Omega$ to be the set of all possible outcomes. \\
+	\textbf{Random:} A model of an empirically observed property of the world.
+\end{df}
+
+\begin{df}{Random Variable}
+The random variable $X$ maps each $\omega \in \Omega$ to $\mathbb{R}^d$
+\end{df}
+
+\begin{eg}{Coin toss}\\
+The random variable $X: \qty{\text{Head, Tail}} \rightarrow \R$ is defined to be: 
+$$\quad X(\text{Head}) = 1, \quad X(\text{Tail}) = 0$$
+\end{eg}
+
+\noindent If we repeat the same experiment under the same conditions, an event \(A \subseteq \Omega\) will occur in some experiments but not in others.
+
+\subsection{Sampling Frequency}
+If we conduct \(n\) experiments, event \(A\) occurs exactly \(n_A\) times. Then the sampling frequency of \(A\) is:
+\[
+f_n(A) = \frac{n_A}{n}.
+\]
+
+\begin{eg}{Coin toss}\\
+\(\{\text{3 heads, 97 tails}\}\) implies in 100 random experiments with a fair coin: 
+\[
+    f_{100}(\text{3 heads, 97 tails}) = \frac{3}{100}.
+\]
+\end{eg}
+
+
+\subsection{Two Philosophies of Randomness}
+\noindent What happens as \(n \to \infty\)?
+\subsubsection{Frequentist Inference}
+\begin{itemize}
+    \item Stability at large scale: volatility of fluctuations of \(f_n(A)\) tends to decrease, where \(n \to \infty\).
+\end{itemize}
+
+\begin{thm}{Frequentists' idea}
+	Existence of population probability \(P(A) \in [0, 1]\), that is not random, where 
+	\[P(A) = \lim_{n \to \infty} f_n(A)\].
+\end{thm}
+\noindent However, this limit cannot be deterministic. For example, bad events like:
+\[
+B_n = \{|f_n(A) - P(A)| \geq \epsilon\}
+\]
+may still occur for large \(n\), which paves the way for the laws of large numbers (LLN) to control \(B_n\).
+
+
+\begin{rmk}
+For all \(\epsilon > 0\), \(\Pr(B_n \text{ happens}) \to 0\) as \(n \to \infty\), where:
+\[
+B_{n, \ep} = \{|f_n(A) - P(A)| \geq \epsilon\}.
+\]
+\end{rmk}
+
+\subsubsection{Probability Theory vs. Statistical Inference}
+
+\begin{rmk}{Probability Theory:} 
+	For given \(P(A)\), compute the probability that a future series of \(n\) events lies in an interval:  
+    \[
+    f_n(A) \in [P(A) - \epsilon, P(A) + \epsilon].
+    \]
+\end{rmk}
+\begin{rmk}{Statistical Inference:}  
+For given statistical evidence, 
+\begin{enumerate}
+	\item A point estimate for $P(A)$: 
+    	\[
+   		\lim_{n\to\infty} f_n(A) = P(A)
+   		\]
+	\item A \textbf{confidence interval estimate} for \(P(A)\):  
+    \[
+   	CI_n = [f_n(A) - Z_n, f_n(A) + Z_n] 
+    \]
+    Such that $\lim_{n\to \infty}Pr\qty{P(A)\subset CI_n} \geq 1-\alpha$ (commonly $\alpha = 0.05$)
+   
+\end{enumerate}
+	
+\end{rmk}
+So the two remarks are the inverse problems of each other. \\
+
+\begin{df}{Estimator}
+An \textbf{estimator} is a computational rule with given data (a function, or later defined as a random variable of data). 
+
+	Independent experiments help reduce fluctuations by leveraging concentration of measure results.
+\end{df}
+
+
+\subsubsection{Bayesian Estimation}
+
+\begin{thm}{Bayesian Idea}
+The unknown \(p = P(A)\) is itself random, and Statistical data reduces uncertainty of the parameter (information update).
+\begin{itemize}
+\item \textbf{Prior:} What we believe about \(P(A)\) before gathering data.
+\item \textbf{Posterior:} Updated beliefs after gathering data.
+\end{itemize}
+\end{thm}
+
+The Bernstein-von Mises Theorem might offer some insights reconciling the two schools of thoughts when $n$ is sufficiently large. 
+
+\begin{thm}{Bernstein-von Mises Theorem}
+The posterior distribution is independent of the prior
+distribution (under some conditions) once the amount of information supplied by a sample of data
+is large enough
+\end{thm}
+\end{document}
