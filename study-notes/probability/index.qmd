@@ -35,7 +35,7 @@ I hope you find this document insightful as you navigate the beauty and rigor of
 16. [The Gaussian Distribution](pdfs/chapter-16-gaussian.pdf)  
 17. [Introduction to Asymptotic Theory](pdfs/chapter-17-asymptotic.pdf) -->
 
-### Appendices - Soem interesting proofs
+### Appendices - Some interesting proofs
 
 <!-- - [Appendix A: Some Proofs](pdfs/appendix-a-proofs.pdf)   -->
 - [Poisson from Binomial](pdfs/proofs-poisson.pdf)
