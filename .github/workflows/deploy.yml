@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: quarto-dev/quarto-actions/setup@v4
+      - uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: latest
 
