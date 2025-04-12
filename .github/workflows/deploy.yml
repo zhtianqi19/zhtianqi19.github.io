@@ -4,17 +4,17 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
-
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
@@ -23,10 +23,10 @@ jobs:
       - name: Render Quarto Project
         run: quarto render
 
-      - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v2
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: _site
 
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
