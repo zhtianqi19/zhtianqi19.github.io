@@ -11,7 +11,7 @@ website:
       - text: About
         file: about.qmd
       - text: CV
-        href: cv.pdf
+        # href: cv.pdf
       - text: Study Notes
         file: study-notes/index.qmd
 
