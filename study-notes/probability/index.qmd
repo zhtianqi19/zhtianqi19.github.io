@@ -41,6 +41,6 @@ I hope you find this document insightful as you navigate the beauty and rigor of
 - [Chebyshev's Inequality](pdfs/proofs-chebyshev.pdf)
 ---
 
-For full references and background reading, see:$$
+For full references and background reading, see:
 
 > [_Real Analysis: Measure Theory, Integration, and Hilbert Spaces_ by Stein and Shakarchi](https://press.princeton.edu/books/hardcover/9780691113869/real-analysis?srsltid=AfmBOoomihathIAitkPFegt30HUeOqi0tzB_kyRvrO_ASRr7b_UX62yY)
