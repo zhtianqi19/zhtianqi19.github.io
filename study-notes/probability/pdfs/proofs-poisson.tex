@@ -1,0 +1,65 @@
+\include{preamble}
+
+\title{\textbf{% ECON 620\\
+               Probability and Statistical Inference}}
+\author{Tianqi Zhang\\
+Emory University}
+\date{Apr 17th 2025}
+
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{1} % Only show sections in the table of contents
+
+
+\begin{thm}{Binomial converges in distribution to Poisson}
+Let $\qty{X_n}_{n\in \N^+}$ be a sequence of random variables defined on a probability space $(\Omega, \mathcal{B}, P)$ and suppose that
+$$X_n\sim \mathrm{Binom}\qty(n, \frac{\lambda}{n})$$
+Then $X_n\xrightarrow{d} X$ such that $X\sim \mathrm{Poisson}(\lambda)$. 
+\end{thm}
+
+\begin{prf*}
+To show the convergence in distribution, we need to show that the probability densities converge to a limit density, that is, 
+$$\lim_{n\to\infty} P(X_n=k) = P(X=k) = e^{-\lambda}\frac{\lambda^{k}}{k!}$$
+Fix $k\in \N^+$, given each $X_n\sim\mathrm{Binom}\qty(n, \frac{\lambda}{n})$, we have
+\begin{align*}
+	\lim_{n\to\infty} P(X_n = k) &= \lim_{n\to\infty}\binom{n}{k} \qty(\frac{\lambda}{n})^{k}\qty(1-\frac{\lambda}{n})^{n-k}\\
+	&= \lim_{n\to\infty}\frac{n!}{k!(n-k)!}\qty(\frac{\lambda}{n})^{k}\qty(1-\frac{\lambda}{n})^{n}\qty(1-\frac{\lambda}{n})^{-k} \quad \text{definition of binomial coefficient}\\
+	&= \underbrace{\frac{\lambda^k}{k!}}_{\textcolor{blue}{\text{Poisson-ish}}}\lim_{n\to\infty}\frac{n!}{(n-k)!}\qty(1-\frac{\lambda}{n})^{n}\frac{1}{n^k\qty(1-\frac{\lambda}{n})^k} \quad \text{grouping terms and factoring}\\
+	&= \frac{\lambda^k}{k!}\lim_{n\to\infty}\qty{n(n-1)\cdots(n-k+1)}\qty(1-\frac{\lambda}{n})^{n}\frac{1}{(n-\lambda)^k}\\
+	&= \frac{\lambda^k}{k!}\lim_{n\to\infty}\underbrace{\frac{\qty{n(n-1)\cdots(n-k+1)}}{(n-\lambda)^k}}_{(1)}\underbrace{\qty(1-\frac{\lambda}{n})^{n}}_{\rightarrow e^{-\lambda} \text{ by def}}
+\end{align*}
+Notice that term $(1)$ expands to: 
+\begin{align*}
+	\lim_{n\to\infty} \frac{n(n-1)\cdots(n-k+1)}{(n-\lambda)^k} &= \lim_{n\to\infty} \frac{n^k}{n^k \qty(1 - \frac{\lambda}{n})^k} \prod_{j=0}^{k-1} \qty(1 - \frac{j}{n})\\
+	&= \lim_{n\to\infty} \qty(1-\frac{\lambda}{n})^{-k}\cdot \prod_{j=0}^{k-1} \qty(1 - \frac{j}{n})\\
+	&= 1
+\end{align*}
+The first term and each term in the product go to 1. Therefore, $\lim_{n\to\infty}(1) = 1$.\\
+
+\noindent We have shown that $\exists X$ s.t. $\lim_{n\to\infty} X_n = X$ and $X\sim \mathrm{Poisson}(\lambda)$. 
+\end{prf*}
+
+
+A more standard approach in proving weak convergence (convergence in distribution) is to look at the pointwise convergence in the characteristic functions. For \(X_n \sim \mathrm{Binomial}\qty(n, \frac{\lambda}{n})\),
+\begin{clm*}
+$$\varphi_{X_n}(t) = \mathbb{E}\bigl[e^{\,i\,t\,X_n}\bigr] = \qty(1 - \frac{\lambda}{n} + \frac{\lambda}{n}\,e^{\,i\,t})^{n}$$
+\end{clm*}
+%
+%\noindent To show this: 
+%\begin{align*}
+%	\varphi_{X_n}(t) &= \mathbb{E}\bigl[e^{\,i\,t\,X_n}\bigr]\\
+%	&= \sum_{k=0}^n e^{itk} \cdot P(X_n = k)\\
+%	&= \sum_{k=0}^n \binom{n}{k} \qty(e^{it}\frac{\lambda}{n})^k \qty(1-\frac{\lambda}{n})^{n-k}
+%\end{align*}
+%According to the binomial theorem, for $x, y\in \R, (x+y)^n = \sum_{k=0}^n \binom{n}{k} x^ky^{n-k}$. In this case, let $x \equiv e^{\,i\,t}\frac{\lambda}{n}$ and $y = \qty(1-\frac{\lambda}{n})$, we have the above expression simplified into 
+%$$\varphi_{X_n}(t) = \qty( e^{\,i\,t}\frac{\lambda}{n} + 1 - \frac{\lambda}{n})^n$$
+\noindent Then the convergence becomes more apparent as
+\begin{align*}
+	\lim_{n\to\infty} \varphi_{X_n}(t) &= \lim_{n\to\infty} \qty( 1 - \frac{\lambda}{n} + \frac{\lambda}{n}\,e^{\,i\,t})^{n}\\
+	&= \lim_{n\to\infty} \left(1 + \frac{\lambda\qty(e^{\,i\,t}-1)}{n}\right)^{n}\\
+	&= \exp{\lambda\qty(e^{\,i\,t}-1)}
+\end{align*}
+The result is precisely the characteristic function of a Poisson-distributed random variable. \\
+
+
+\end{document}

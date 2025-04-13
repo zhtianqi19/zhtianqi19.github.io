@@ -1,0 +1,70 @@
+\include{preamble}
+
+\title{\textbf{% ECON 620\\
+               Probability and Statistical Inference}}
+\author{Tianqi Zhang\\
+Emory University}
+\date{Apr 17th 2025}
+
+\begin{document}
+\maketitle
+
+\begin{thm}{Chebyshev's Inequality}
+For $f: \R^d \to \R, f\geq 0, \alpha \in \R$, we have $m(\qty{f\geq \alpha}) <\frac{1}{\alpha}\int f$. \\
+\end{thm}
+
+
+\begin{prf*}
+By monotonicity of integral, 
+$$\int f\geq \int_{\qty{f\geq \alpha}} f$$
+Also observe that 
+$$\int_{\qty{f\geq \alpha}} f \geq \alpha\cdot m(\qty{f\geq \alpha})\quad \text{Since }f\geq \alpha \text{ a.e. on the set}$$
+Associating the two inequalities: 
+$$\frac{1}{\alpha} \int f\geq m(\qty{f\geq \alpha})$$
+
+\end{prf*}
+\begin{rmk}{}
+Change the measure to any probability measure and the integration sign to an expectation, we have the typical Chebyshev's inequality in any statistics 101 class. 	
+\end{rmk}
+
+
+
+\newpage
+\noindent \textbf{Two immediate lemmas follow: }\\
+
+\begin{lem}{}
+For $f:\R^d\to [0, \infty]$, if $\int f<\infty$, then $f<\infty$ a.e. 
+\end{lem}
+
+\begin{prf*}
+	Fix any $n\in \N$, by Chebyshev's inequality, 
+	$$m\qty{f\geq n} < \frac{1}{n} \underbrace{\int f}_{<\infty}$$
+	And the sequence of sets: $\qty{f\geq n}_{n\in \N}$ are nested and $ \qty{f\geq n}\searrow \qty{f>\infty}$. Therefore by continuity of measure: 
+	\begin{align*}
+		\lim_{n\to\infty} m(\qty{f\geq n}) &\leq \lim_{n\to\infty} \frac{1}{n}\int f\\
+		m(\qty{f>\infty}) &\leq 0\\
+	\end{align*}
+	Therefore, $f$ goes to infinity on a set of measure 0, which is equivalent as $f$ is finite almost everywhere. 
+	
+	
+\end{prf*}
+\begin{lem}{}
+	For $f: \R^d \to [0, \infty]$, if $\int f = 0$, then $f=0$ a.e.
+\end{lem}
+
+\begin{prf*}
+Similarly, fixing $n\in \N$, we have by Chebyshev's inequality: 
+\begin{align*}
+	m(\qty{f\geq 1/n}) &< n\int f = 0
+\end{align*}
+Observe that the sequence of sets $\qty{f\geq 1/n}_{n\in \N}$ is an increasing sequence of sets such that $\qty{f\geq 1/n} \nearrow \qty{f>0}$. Therefore by continuity of measure: 
+\begin{align*}
+	\lim_{n\to\infty} m\qty(\qty{f\geq 1/n}) &\leq n\int f\\
+	 m\qty(\qty{f>0}) &\leq 0
+\end{align*}
+
+Therefore, the set on which $f$ is strictly larger than 0 has measure 0. This is equivalent as $f = 0$ almost everywhere. 
+
+\end{prf*}
+
+\end{document}
