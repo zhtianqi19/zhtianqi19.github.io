@@ -22,32 +22,30 @@ A discrete probability measure on sample space \(\Omega\), finite or countable, 
 A general definition that works not only for finite $\Omega$ but also for countable $\Omega$ since it allows in both cases to compute for any random event $A\subseteq \Omega$. 
 $$P(A) = \sum_{\omega\in A}P_\omega$$
 \end{df}
+such that it satisfies the \textbf{Komolgrov axioms:}
 
-\begin{df}{Measure/Distribution}\\
-A measure \(P\) on \(\Omega\) is a mapping from the power set of the latent space $\Omega$. 
-$$P: \mathscr{P}(\Omega) \to [0, \infty]$$
-such that the following two axioms are satisfied:
+\begin{thm}{Kolmogorov Axioms for Discrete Probability}
+Let \( \Omega \) be a finite or countable set. A function \( P: \mathscr{P}(\Omega) \to [0,1] \) is a probability measure if:
 \begin{enumerate}
-	\item \textbf{Non-negativity:} $\forall A \subseteq \Omega, P(A)\geq 0$
-	\item \textbf{Countable additivity:} (Or sigma additivity) For disjoint $A_n \subset \Omega$, 
-	$$P\qty(\bigcup_{n\in\N} A_n) = \sum_k P(A_n)$$
-	\item \textbf{Empty set measurability: } $P(\emptyset) = 0$. 
+    \item \textbf{Non-negativity:} \( P(A) \geq 0 \) for all \( A \subseteq \Omega \),
+    \item \textbf{Normalization:} \( P(\Omega) = 1 \),
+    \item \textbf{Countable additivity:} For any sequence of disjoint events $A_1, A_2, \dots \subseteq \Omega$:
+$$P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)$$
 \end{enumerate}
- Note that for $P$ to be a probability measure: $P(A) \in [0, 1] \ \forall A\in \mathscr{P}(\Omega)$, with $P(\Omega) = 1$.
-\end{df}
-
-\begin{thm}{Komolgrov Axioms}
-	$P:\mathscr{P}(\Omega) \rightarrow [0, 1]$ is a probability measure if the above conditions are true. 
 \end{thm}
 
-\begin{rmk}{inclusion of infinity:}
-In most measure-theoretic contexts, it is permissible for certain subsets  $\mathcal{A}\subset \Omega$ to have infinite measure. Consequently, the codomain of a measure is typically extended to include infinity. This is commonly represented as the set of positive real numbers together with infinity, denoted by $[0, \infty)\cup\qty{\infty}$. For simplicity, this notation is often abbreviated as $[0, \infty]$. 
-\end{rmk}
 
+
+Let’s consider some common examples of discrete probability measures.
 
 \begin{eg}{Common Measures}
 \begin{itemize}
     \item \textbf{Counting Measure:} \(\mu(A) = |A|\).
+    Define $\Omega = \mathbb{N}$ and let
+	\[
+	P(A) = \text{number of elements in } A.
+	\]
+	This is called the \textbf{counting measure}. It’s not a probability measure since the total mass is infinite, but it satisfies many of the same properties and helps build intuition.
     \item \textbf{Dirac Measure at \(p \in \Omega\):}
     \[
     \delta_p(A) = 
@@ -56,82 +54,156 @@ In most measure-theoretic contexts, it is permissible for certain subsets  $\mat
     0, & \text{otherwise}.
     \end{cases}
     \]
-    \item \textbf{Lebesgue Measure on $\R$:} For simple intervals $[a, b)\subset \R$ with $a\leq b$. Lebesgue measure $\mu$ is defined to be $b-a$. 
+    This is called the \textbf{Dirac measure} at $p$. It concentrates all probability mass at a single point.
+    
+	\item \textbf{Uniform Distribution on a Finite Set}
+	Let $\Omega = \{1, 2, \dots, n\}$ and define
+	\[
+	P(\omega) = \frac{1}{n} \quad \text{for all } \omega \in \Omega.
+	\]
+	This assigns equal weight to each element — a classic finite uniform distribution.
 \end{itemize}
 \end{eg}
 
-\begin{prop}{Properties of Komolgrov axioms}
+\subsection{Basic Properties of Discrete Probability}
+
+Let $P$ be a discrete probability measure on $\Omega$ and let $A, B \subseteq \Omega$.
+
+\begin{prop}{Basic Rules}
 \begin{enumerate}
-	\item $P(\overline A) = 1-P(A)$ where $\overline A \equiv \Omega\backslash A$.
-	\item Define $A+B$ as the disjoint union of $A, B$, i.e., $A\cap B = \varnothing$, then $P(A+B) = P(A) + P(B)$. 
-	\item If $B\subset A$, define $A-B \equiv A\cap \overline B$  then $P(A-B) = P(A) - P(B)$. 
-	\item Partition $\Omega$ into disjoint $\qty{H_i}_{i\in \N}$, i.e. $H_i\cap H_j = \varnothing \ \forall i, j$ and $\bigcup_i H_i = \Omega$. Then $\forall A\subset \Omega, P(A) = \sum_i P(A\cap H_i)$. 
+    \item \textbf{Empty and full space:} \( P(\emptyset) = 0 \), \quad \( P(\Omega) = 1 \)
+    
+    \item \textbf{Complement rule:} \( P(A^c) = 1 - P(A) \)
+    \item \textbf{Difference rule:} If \( B \subseteq A \), then
+    \[
+    P(A \setminus B) = P(A) - P(B)
+    \]
 \end{enumerate}
 \end{prop}
 
-\begin{cor}{Monotonicity}
-If $A\subseteq B$, then $0\leq P(A) \leq P(B)\leq 1$. 	
-\end{cor}\
+\begin{cor}{Monotonicity} If $A \subseteq B$, then $P(A) \leq P(B)$
+\end{cor}
+
+\begin{cor}{Partition Formula}
+Suppose $\Omega$ is partitioned into disjoint subsets $\{H_i\}$ such that $\bigcup_i H_i = \Omega$. Then for any $A \subseteq \Omega$,
+\[
+P(A) = \sum_i P(A \cap H_i).
+\]
+\end{cor}
 
 
-\begin{cor}{Sylvester Formula}
+\begin{cor}{Sylvester Formula (Inclusion-Exclusion)}
 For any collection of subsets $\qty{A_i}$ of $\Omega$
-$$P\qty(\bigcup_{i=1}^n) = \sum_{i=1}^nP(A_i) - \sum_{i<j}P(A_i\cap A_j) + \sum_{i<j<k}P(A_i\cap A_j\cap A_k) + \dots + (-1)^{n-1}P\qty(\bigcap_{i=1}^nA_i)$$
+$$P\qty(\bigcup_{i=1}^n A_i) = \sum_{i=1}^nP(A_i) - \sum_{i<j}P(A_i\cap A_j) + \sum_{i<j<k}P(A_i\cap A_j\cap A_k) + \dots + (-1)^{n-1}P\qty(\bigcap_{i=1}^nA_i)$$
 Or a more intuitive version, for any $A, B\subseteq \Omega$, 
 $$P(A\cup B) = P(A)+P(B)-P(A\cap B)$$
 \end{cor}
 
-\begin{rmk}{Banach-Tarski Paradox:}
-If \(\Omega\) is countable, we can assign a finite measure to all subsets of \(\Omega\) satisfying the Kolmogorov axioms. However, if \(\Omega\) is uncountable, these axioms can lead to paradoxes.
-\end{rmk}
 
-\noindent To address these issues, we may need to restrict our measure $P: \mathscr{P}(\Omega)\rightarrow [0, \infty]$ to a carefully chosen collection of subsets $\mathcal{F}\subset \Omega$. This restriction sets the foundation for further discussion on the role of $\sigma$-algebras in measure theory.
+\subsection{Further Properties of Discrete Probability}
+Probability satisfies a number of important inequalities, logical identities, and limit properties. These results often appear in theoretical proofs and practical applications.
 
-\subsection{Results and Properties}
+\subsubsection{Inequalities and Bounds}
 
 \begin{prop}{Boole's Inequality}
-For \(A_i \subseteq \Omega\), not necessarily disjoint:
+For any (finite or countable) collection of events \( A_i \subseteq \Omega \), not necessarily disjoint:
 \[
 P\left(\bigcup_i A_i\right) \leq \sum_i P(A_i).
 \]
-Proof: \ref{proof: boole}
 \end{prop}
+
+\begin{rmk}
+This inequality reflects that when events overlap, simply summing their individual probabilities can overestimate the probability of their union. In general measure theory, Boole’s inequality expresses the principle of \textbf{countable subadditivity}.
+\end{rmk}
+
 
 \begin{prop}{Bonferroni's Inequality}
-For \(A_i \subseteq \Omega\):
+Let \( A_1, A_2, \dots, A_n \subseteq \Omega \). Then:
 \[
-P\left(\bigcap_i A_i\right) \geq \sum_i P(A_i) - (n-1).
-\]
-This result is useful for multiple hypothesis testing.\\
-Proof: \ref{proof: bonferroni}
-\end{prop}
-
-\begin{prop}{De Morgan's Laws}
-\[
-P\left(\bigcap_i A_i\right) = P\left(\bigcup_i \overline{A_i}\right).
+P\left(\bigcap_{i=1}^n A_i\right) \geq \sum_{i=1}^n P(A_i) - (n - 1).
 \]
 \end{prop}
+\begin{rmk}
+Bonferroni’s inequality provides a lower bound on the probability that *all* events occur. It’s commonly used in multiple hypothesis testing.
+\end{rmk}
 
-\noindent Some notations for limits of sets:  
-\begin{itemize}
-	\item \textbf{Increasing Sequence: }\((A_n)\) is called an increasing sequence if (\(A_n \subseteq A_{n+1}\)), and 
-	$$\lim_{n\to \infty} \uparrow A_n \equiv \bigcup_{k=1}^\infty A_n$$
-	\item \textbf{Decreasing Sequence: }\((B_n)\) is called an increasing sequence if (\(B_n \supseteq B_{n+1}\)), and 
-	$$\lim_{n\to \infty} \downarrow B_n \equiv \bigcap_{k=1}^\infty B_n$$
-\end{itemize}
 
-\begin{prop}{Continuity of Measures}\\
-The continuity of measures is preserved under increasing and decreasing set limits. \\
 
-\noindent Let \((A_n)\) be an increasing sequence of sets:\\
-\textbf{Increasing continuity:}
-    \[
-    \lim_{n \to \infty} P(A_n) = P\qty(\lim_{n \to \infty} \uparrow A_n) \equiv P\left(\bigcup_{n=1}^\infty A_n\right).
-    \]
- Let \((B_n)\) be a decreasing sequence of sets:\\
- \textbf{Decreasing Sequence:}
-    \[
-    \lim_{n \to \infty} P(B_n) = P\qty(\lim_{n \to \infty} \downarrow B_n) \equiv P\left(\bigcap_{n=1}^\infty B_n\right).
-    \]
+\subsubsection{Set-Theoretic Identities}
+\begin{prop}{De Morgan's Law}
+For any collection \( \{A_i\} \),
+\[
+\left( \bigcap_i A_i \right)^C = \bigcup_i A_i^C.
+\]
+Taking probabilities on both sides:
+\[
+P\left( \bigcap_i A_i \right) = 1 - P\left( \bigcup_i A_i^C \right).
+\]
+where \( A^C \equiv \Omega \setminus A \) denotes the complement of \( A \).
 \end{prop}
+
+%\begin{prop}{Continuity of Probability}
+%Let \( P \) be a discrete probability measure.
+%
+%\begin{enumerate}
+%    \item \textbf{Increasing continuity:} If \( A_n \uparrow A \), then
+%    \[
+%    \lim_{n \to \infty} P(A_n) = P\left( \bigcup_{n=1}^\infty A_n \right).
+%    \]
+%    
+%    \item \textbf{Decreasing continuity:} If \( B_n \downarrow B \), then
+%    \[
+%    \lim_{n \to \infty} P(B_n) = P\left( \bigcap_{n=1}^\infty B_n \right).
+%    \]
+%\end{enumerate}
+%\end{prop}
+
+
+%
+%
+%\subsection{Results and Properties}
+%
+%\begin{prop}{Boole's Inequality}
+%For \(A_i \subseteq \Omega\), not necessarily disjoint:
+%\[
+%P\left(\bigcup_i A_i\right) \leq \sum_i P(A_i).
+%\]
+%\end{prop}
+%
+%\begin{prop}{Bonferroni's Inequality}
+%For \(A_i \subseteq \Omega\):
+%\[
+%P\left(\bigcap_i A_i\right) \geq \sum_i P(A_i) - (n-1).
+%\]
+%This result is useful for multiple hypothesis testing.
+%\end{prop}
+%
+%\begin{prop}{De Morgan's Laws}
+%\[
+%P\left(\bigcap_i A_i\right) = P\left(\bigcup_i \overline{A_i}\right).
+%\]
+%\end{prop}
+%
+%\noindent Some notations for limits of sets:  
+%\begin{itemize}
+%	\item \textbf{Increasing Sequence: }\((A_n)\) is called an increasing sequence if (\(A_n \subseteq A_{n+1}\)), and 
+%	$$\lim_{n\to \infty} \uparrow A_n \equiv \bigcup_{k=1}^\infty A_n$$
+%	\item \textbf{Decreasing Sequence: }\((B_n)\) is called an increasing sequence if (\(B_n \supseteq B_{n+1}\)), and 
+%	$$\lim_{n\to \infty} \downarrow B_n \equiv \bigcap_{k=1}^\infty B_n$$
+%\end{itemize}
+%
+%\begin{prop}{Continuity of Measures}\\
+%The continuity of measures is preserved under increasing and decreasing set limits. \\
+%
+%\noindent Let \((A_n)\) be an increasing sequence of sets:\\
+%\textbf{Increasing continuity:}
+%    \[
+%    \lim_{n \to \infty} P(A_n) = P\qty(\lim_{n \to \infty} \uparrow A_n) \equiv P\left(\bigcup_{n=1}^\infty A_n\right).
+%    \]
+% Let \((B_n)\) be a decreasing sequence of sets:\\
+% \textbf{Decreasing Sequence:}
+%    \[
+%    \lim_{n \to \infty} P(B_n) = P\qty(\lim_{n \to \infty} \downarrow B_n) \equiv P\left(\bigcap_{n=1}^\infty B_n\right).
+%    \]
+%\end{prop}
 \end{document}

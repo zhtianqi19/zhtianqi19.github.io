@@ -12,8 +12,12 @@ Emory University}
 
 \setcounter{section}{3}
 \section{Lebesgue Measure}
-\subsection{Motivation (Number Theory Version)}
-Focus on half closed interval. Random draws $\omega \in [0,1]$: $\mathbb{P}(\omega \in [0,0.47)) = ?$
+\subsection{Motivation: From Probability to Length (Number Theory Version)}
+Now suppose that we need to draw a real number at random from the interval [0, 1]. What is the probability that it lies in [0, 0.47)?
+
+In a discrete setting, we count favorable outcomes. Here, outcomes are uncountably infinite — so what does “probability” mean?
+
+We can break down the problem by \textbf{picking digits} one by one. 
 \begin{itemize}
     \item Pick a number: \(0.xy\ldots\)
     \item Either \(x \in \{0,1,2,3\}\) or \(x = 4 \cap y \in \{0, 1, \ldots, 0.6\}\).
@@ -25,37 +29,116 @@ Focus on half closed interval. Random draws $\omega \in [0,1]$: $\mathbb{P}(\ome
 \mathbb{P}(w \in [0,0.47]) = \frac{47}{100} = 0.47 \quad \text{\textcolor{teal}{Some shape of Uniform CDF}}.
 \]
 
-\subsection{Construction}
-\begin{df}{Lebesgue Measure on $\R\cap [0,1]$}\\
-More Generally, for \(a, b \in \mathbb{R} \cap [0,1]\), \(a < b\), Lebesgue Measure is a measure defined on the power set of $\mathbb{R} \cap [0,1]$ \textcolor{red}{(Warning! this is ideal but is not true. reason to be discussed in the next chapter.)} onto $\R$ such that the mapping is non-negative and sigma-additive. It is defined by the following: 
+\subsection{Defining Lebesgue Measure on Intervals}
+\begin{df}{Lebesgue Measure on \([0, 1]\)}
+Let \( a, b \in [0, 1] \) with \( a < b \). The Lebesgue measure \( \mu \) assigns:
 \[
-\mathbb{P}([0,a)) = a, \quad \mathbb{P}([0,b)) = b.
+\mu([a, b)) = b - a.
 \]
-\[
-\mathbb{P}([a,b)) = \mathbb{P}([0,b)) - \mathbb{P}([0,a)) = b - a.
-\]
+In a more mathematical sense, the "length" of an interval is a "size" to a subset of any general set. Therefore, the essence of a measure, or Lebesgue measure on $\R$, intends to describe the "size" of \textcolor{red}{almost} any general subset in $\R$ by extending this rule to finite unions of disjoint intervals and then, with more care, to broader collections of subsets.
 \end{df}
 
-\begin{prop}{Additional Features on Lebesgue Measure}
-\begin{itemize}
-        \item Unity: $\mathbb{P}([0, 1]) = 1$ 
-    	\item Translational Invariant: $\mathbb{P}(x + A) = \mathbb{P}(A), \ \forall x \in \mathbb{R}$
-\end{itemize}
-\end{prop}
+
+This seems natural — the length of an interval. But to treat it as a true measure in probability context, we need to verify that it satisfies the Kolmogorov axioms and additional key properties.
 
 
-\begin{prop}{}
+\subsection{Properties of Lebesgue Measure on $\R$}
+
+\begin{prop}{Basic Properties}
+Let \( \mu \) denote Lebesgue measure on $\R$:
 \begin{enumerate}
-    \item \textbf{Open interval: } \(\mathbb{P}((a,b)) = \lim_{n \to 0} \mathbb{P}((a+\frac{1}{n},b)) = \lim_{n \to 0} b-(a+\frac{1}{n}) = b-a\).
-    \item \textbf{Single element: } \(\mathbb{P}(\qty{a}) = \mathbb{P}([a,b]) - \mathbb{P}((a,b)) = b-a - (b-a) = 0 \).
-    \item \textbf{Closed interval: } \(\mathbb{P}([a,b]) = \mathbb{P}([a,b)) + \mathbb{P}(\{b\}) = \mathbb{P}([a,b]) = b - a.\)
+    \item \textbf{Length:} \( \mu([a, b)) = b - a \)
+    \item \textbf{Normalization:} \( \mu([0, 1]) = 1 \)
+    \item \textbf{Translation Invariance:} \( \mu(x + A) = \mu(A), \ \forall x \in \mathbb{R} \)
 \end{enumerate}
 \end{prop}
 
+\begin{prop}{Special Cases}
+\begin{enumerate}
+    \item Open intervals: \( \mu((a, b)) = \mu([a, b)) = \mu([a, b]) = b - a \)
+    \item Single element set:\( \mu(\{a\}) = 0 \)
+    \item Countable set: \( \mu(\mathbb{Q} \cap [0, 1]) = 0 \)
+\end{enumerate}
+\end{prop}
 \begin{rmk}
-Using Kolmogorov axioms for measures, \(A \subset [0,1]\), finite or countable, \(\mathbb{P}(A) = 0\).
-As a result, \(\mathbb{P}(\mathbb{Q} \cap [0,1]) = 0.\)
+Lebesgue measure assigns zero measure to all finite or countable sets — even dense ones like \( \mathbb{Q} \cap [0,1] \).
 \end{rmk}
+
+\subsection{What’s Missing?}
+
+\begin{rmk}{Why Care About Measurability?}
+So far, we've assigned lengths to intervals and even countable unions. But it turns out — surprisingly — that not all subsets of \( \mathbb{R} \) can be measured in this way, namely:
+\end{rmk}
+
+
+
+\begin{eg}{Banach–Tarski Paradox (Informal Version)}
+In 3-dimensional space, there exists a decomposition of a solid ball into a finite number of disjoint pieces, which can be reassembled — using only rotations and translations — into two identical copies of the original ball.
+
+This construction:
+\begin{itemize}
+    \item Uses only finitely many pieces.
+    \item Does not rely on scaling or stretching.
+    \item Crucially depends on the Axiom of Choice.
+\end{itemize}
+
+But it cannot be carried out with measurable pieces.
+
+\textbf{Implication:} Any measure that is translation invariant and countably additive cannot be defined on \textbf{all} subsets of \( \mathbb{R}^3 \) if we hold onto the axiom of choice.
+\end{eg}
+
+%\begin{prop}{Non-existence of extension of length to \text{all} subsets of $\R$}\\
+%	There does not exist a function $\mu$ with all the following properties:\\
+%	a). $\mu: \mathcal{P}(\R)\rightarrow [0, \infty]$\\
+%	b). $\mu(I) = \ell(I) \forall$ open interval $I$ on $\R$\\
+%	c). Countable additivity: $\mu\qty(\bigcup_k A_k) = \sum_k \mu(A_k)$ for all disjoint $A_k\subset \R$\\
+%	d). Translation invariant: $\mu(t+A) = \mu(A) \ \forall A\subset \R$ and $t\in \R$. 
+%\end{prop}
+%
+%\noindent The only relaxation we can make is $a).$ Instead of defining the function on the entirety of power set of $\R$, we consider a more practice subset of the power set such that the subset is closed under complementation and countable unions. We make the following definition: \\
+
+
+\begin{rmk}
+To avoid these paradoxes, we restrict our attention to a special collection of subsets called \textbf{measurable sets}. In the next chapter, we will construct Lebesgue measure more carefully, using the concept of \textit{outer measure} and the \textbf{Carathéodory criterion} to define which sets can be measured consistently.
+\end{rmk}
+
+
+
+%To handle these subtleties, we need a more careful construction: starting from \textbf{outer measure} and identifying \textbf{measurable sets} via Carathéodory’s criterion. This will be the subject of the next chapter.
+
+
+
+
+%\begin{df}{Lebesgue Measure on $\R\cap [0,1]$}\\
+%More Generally, for \(a, b \in \mathbb{R} \cap [0,1]\), \(a < b\), Lebesgue Measure is a measure defined on the power set of $\mathbb{R} \cap [0,1]$ \textcolor{red}{(Warning! this is ideal but is not true. reason to be discussed in the next chapter.)} onto $\R$ such that the mapping is non-negative and sigma-additive. It is defined by the following: 
+%\[
+%\mathbb{P}([0,a)) = a, \quad \mathbb{P}([0,b)) = b.
+%\]
+%\[
+%\mathbb{P}([a,b)) = \mathbb{P}([0,b)) - \mathbb{P}([0,a)) = b - a.
+%\]
+%\end{df}
+%
+%\begin{prop}{Additional Features on Lebesgue Measure}
+%\begin{itemize}
+%        \item Unity: $\mathbb{P}([0, 1]) = 1$ 
+%    	\item Translational Invariant: $\mathbb{P}(x + A) = \mathbb{P}(A), \ \forall x \in \mathbb{R}$
+%\end{itemize}
+%\end{prop}
+%
+%
+%\begin{prop}{}
+%\begin{enumerate}
+%    \item \textbf{Open interval: } \(\mathbb{P}((a,b)) = \lim_{n \to 0} \mathbb{P}((a+\frac{1}{n},b)) = \lim_{n \to 0} b-(a+\frac{1}{n}) = b-a\).
+%    \item \textbf{Single element: } \(\mathbb{P}(\qty{a}) = \mathbb{P}([a,b]) - \mathbb{P}((a,b)) = b-a - (b-a) = 0 \).
+%    \item \textbf{Closed interval: } \(\mathbb{P}([a,b]) = \mathbb{P}([a,b)) + \mathbb{P}(\{b\}) = \mathbb{P}([a,b]) = b - a.\)
+%\end{enumerate}
+%\end{prop}
+%
+%\begin{rmk}
+%Using Kolmogorov axioms for measures, \(A \subset [0,1]\), finite or countable, \(\mathbb{P}(A) = 0\).
+%As a result, \(\mathbb{P}(\mathbb{Q} \cap [0,1]) = 0.\)
+%\end{rmk}
 
 %
 %\newpage

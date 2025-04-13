@@ -93,13 +93,16 @@ For \( f \in S^+ \): define its Lebesgue integral w.r.t. its measure $\mu$ as:
 \subsection{Lebesgue Integral}
 \begin{df}{Lebesgue Integral}
 \begin{enumerate}
-	\item For any \( f: \Omega \to \mathbb{R} \), define the set $\mathcal{S_f}^+ = \qty{h\in S^+\mid h<f}$.
+	\item For any positive function \( f: \Omega \to \mathbb{R} \), define the set $\mathcal{S}^+_f = \qty{h\in S^+\mid h<f}$.
 	\item Compute all Lebesgue integral $I(h)$ according to the previous definition. 
 \end{enumerate}
 We define 
 $$\int_\Omega fd\mu = \sup_{h\in \mathcal{S_f}^+} I(h)$$
 And we note that $f$ is $\mu$-integrable (or just integrable if the context if clear) if $\int_\Omega fd\mu <\infty$. 
 \end{df}
+
+
+
 
 \subsection{Important results and theorems}
 
@@ -151,5 +154,148 @@ For a non-negative random variable $X$ and any $\alpha > 0$.
 $$P(|X| > \alpha) \leq \frac{\mathbb{E}[|X|]}{\alpha}$$
 Intuition: The probability that $X$ exceeds some threshold $\alpha$ is bounded by the ratio of its expected value to  $\alpha$. It provides an upper bound on tail probabilities.
 \end{cor}
+
+
+
+\subsection{Chebyshev's Inequality}
+\textbf{Statement:} For $f: \R^d \to \R, f\geq 0, \alpha \in \R$, we have $m(\qty{f\geq \alpha}) <\frac{1}{\alpha}\int f$. \\
+
+\begin{prf}
+By monotonicity of integral, 
+$$\int f\geq \int_{\qty{f\geq \alpha}} f$$
+Also observe that 
+$$\int_{\qty{f\geq \alpha}} f \geq \alpha\cdot m(\qty{f\geq \alpha})\quad \text{Since }f\geq \alpha \text{ a.e. on the set}$$
+Associating the two inequalities: 
+$$\frac{1}{\alpha} \int f\geq m(\qty{f\geq \alpha})$$
+
+\end{prf}
+
+\textbf{Two immediate lemmas follow: }
+\subsubsection{Lemma 1}
+\textbf{Statement:}For $f:\R^d\to [0, \infty]$, if $\int f<\infty$, then $f<\infty$ a.e.\\
+
+\begin{prf}
+	Fix any $n\in \N$, by Chebyshev's inequality, 
+	$$m\qty{f\geq n} < \frac{1}{n} \underbrace{\int f}_{<\infty}$$
+	And the sequence of sets: $\qty{f\geq n}_{n\in \N}$ are nested and $ \qty{f\geq n}\searrow \qty{f>\infty}$. Therefore by continuity of measure: 
+	\begin{align*}
+		\lim_{n\to\infty} m(\qty{f\geq n}) &\leq \lim_{n\to\infty} \frac{1}{n}\int f\\
+		m(\qty{f>\infty}) &\leq 0\\
+	\end{align*}
+	Therefore, $f$ goes to infinity on a set of measure 0, which is equivalent as $f$ is finite almost everywhere. 
+	
+	
+\end{prf}
+
+\subsubsection{Lemma 2}
+\textbf{Statement:} For $f: \R^d \to [0, \infty]$, if $\int f = 0$, then $f=0$ a.e.\\
+
+\begin{prf}
+Similarly, fixing $n\in \N$, we have by Chebyshev's inequality: 
+\begin{align*}
+	m(\qty{f\geq 1/n}) &< n\int f = 0
+\end{align*}
+Observe that the sequence of sets $\qty{f\geq 1/n}_{n\in \N}$ is an increasing sequence of sets such that $\qty{f\geq 1/n} \nearrow \qty{f>0}$. Therefore by continuity of measure: 
+\begin{align*}
+	\lim_{n\to\infty} m\qty(\qty{f\geq 1/n}) &\leq n\int f\\
+	 m\qty(\qty{f>0}) &\leq 0
+\end{align*}
+
+Therefore, the set on which $f$ is strictly larger than 0 has measure 0. This is equivalent as $f = 0$ almost everywhere. 
+
+\end{prf}
+
+\subsection{Fatou's Lemma}
+\textbf{Statement} Given a sequence of functions $\qty{f_n}_{n\in \N}$,  $f_n\geq 0 \ \forall n$. If $f_n\to f$ almost everywhere. Then $\int f \leq \liminf_{n} \int f_n$. \\
+
+\begin{prf}
+Same practice that we can always remove the subset from the domain on which 	$f_n$ does not converge to $f$, therefore making $f_n\to f$ pointwise everywhere.\\
+
+Consider a function $g$ bounded with finite support: $m(\mathrm{supp}(g))<\infty$, and $0\leq g\leq f$. Reminder that the construction of $g$ is qualified for the bounded convergence theorem. \\
+
+Then we set $g_n\equiv \min\qty{g, f_n}$. Given $g<f$ and $f_n\to f$, we know that $g_n\to g$. \\
+
+By bounded convergence theorem, 
+$$\int g = \lim_{n\to\infty} g_n$$
+By monotonicity: 
+$$\forall n, \ g_n \leq f_n \Rightarrow \int g_n \leq \int f_n$$
+We take the limit inferior on both ends (since we don't know yet if the limits exist): 
+\begin{align*}
+	\underbrace{\liminf_{n}\int g_n}_{=\lim_n \int g_n} &\leq \liminf_{n}\int f_n\\
+	\int g &\leq \liminf_{n}\int f_n \quad \forall g\leq f\\
+	\underbrace{\sup_{g\leq f}\int g}_{\text{definition of }\int f} &\leq \liminf_{n}\int f_n\\
+	\int f &\leq \liminf_{n}\int f_n 
+\end{align*}
+
+\end{prf}
+
+\subsection{Monotone Convergence Theorem}
+\begin{prf}
+
+\textbf{Statement} For a sequence of function $f_k: \R^d \to \R, f_k\geq 0.$ If $f_k$ monotonically converges to some limit function $f$, then 
+$$\lim_{k\to\infty}\int f_k = \int f$$
+By monotonicity of integral, $\qty{f_k}$ being a monotone sequence implies that $\qty{\int f_k}$ is also a monotone sequence bounded by $\int f$. Therefore, $\lim_{k\to\infty} \int f_k$ exists and is smaller than $\int f$. \\
+
+The other side of the inequality is given by Fatou's lemma: 
+$$\int f \leq \liminf_k \int f_k = \lim_k \int f_k$$
+Therefore, we have $\int f = \lim_k \int f_k$. 
+
+\end{prf}
+\subsection{Dominated Convergence Theorem}
+\textbf{Statement} For a sequence of functions $f_k: \R^d \to \R$ and $f_k\to f$ a.e.. If $\exists g$ integrable such that $\abs{f_k}\leq g \ \forall k$, then $\lim_{k\to\infty} \int \abs{f_k-f} = 0$. \\
+
+\begin{prf}
+We focus on the function $2g-\abs{f_k-f}$, note that $\abs{f_k}\leq g$ implies that $\abs{f}\leq g$, and 
+$$\abs{f_k - f}\leq \abs{f_k} + \abs{f} \leq 2g$$
+Therefore $2g-\abs{f_k-f}\geq 0$. \\
+
+By Fatou's lemma,
+\begin{align*}
+	\liminf_{k} \int 2g - \abs{f_k-f} &\geq \int 2g - \lim_k \abs{f_k-f} = \int 2g\\
+	\int 2g - \liminf_{k}\int \abs{f_k-f} &\geq \int 2g\\
+	\limsup_k \int \abs{f_k-f} - \int 2g &\leq -\int 2g\\
+	\limsup_k \int \abs{f_k-f}&\leq 0
+\end{align*}
+Given that $\int \abs{f_k-f}\geq 0$ by definition, we conclude that $\lim_{k\to\infty}\int \abs{f_k-f}= 0$.\\
+
+Remark: This conclusion, in particular, states that $\int f_k\to \int f$.  
+
+\end{prf}
+\subsection{Other Propositions to Integrability}
+\subsubsection{Proposition I}
+\textbf{Statement} For $f: \R^d\to \R$ integrable, then $\forall \ep>0, \exists E \subset \R^d, m(E)<\infty, and \int_E \abs{f}<\ep$. \\
+
+\begin{prf}
+We define $E_N \equiv \qty{\abs{x}<N}$. \\
+Observe the sequence of functions $\abs{f}\cdot \chi_{E_N}$ are measurable and converges pointwise monotonically to $\abs{f}$. We can then apply monotonic convergence theorem to conclude that
+\begin{align*}
+	\lim_{N\to\infty}\int\abs{f}\chi_{E_N} &= \int\abs{f}
+\end{align*}
+Then by this convergence, $\exists N$ such that the difference $E\equiv \R^d\backslash E_N$ such that
+$$\int_{E} \abs{f} =\int_{\R^d}\abs{f} - \int_{E_n}\abs{f} <\epsilon$$
+
+
+Remark: \textcolor{teal}{The setup $\abs{f}\chi_{E_N}$ is also dominated by $f$ so DCT also works for this setup.}
+
+\end{prf}
+
+\subsubsection{Proposition II: Absolute Continuity}
+\textbf{Statement} For $f: \R^d\to \R$ integrable, then $\forall \ep>0, \exists \delta>0$ such that $\forall E\subset \R^d$ measurable with $m(E)<\delta$, $\int_E \abs{f}<\ep$.\\ 
+
+\begin{prf}
+We will prove this by contradiction: Suppose this is not true. \\
+
+Then $\exists \ep>0$ such that we cannot find a $\delta$, that is, $\forall n$, there are some exceptions on some sets $E_n$, we set it up by letting $m(E_n) <1/2^n$ and $\int_E \abs{f}\geq \ep$. \\
+
+Then notice that the measure of $E_n$ is designed to be summable and the infinite sum converges - then we have Borel-Cantelli Lemma: 
+$$\sum_n m(E_n) < \infty \Rightarrow m\qty(\limsup_n E_n) = 0$$
+
+\textcolor{teal}{Recall $\limsup_n E_n = \cap_{n\in\N}\cup_{k\geq n} E_n$}\\
+
+We define the limsup set to be $E$. Since $m(E) = 0$, $\int_E \abs{f} = 0$. Observe the set of union $\cup_{k\geq n}E_n$, the sequence of functions $\abs{f}\cdot\chi_{\bigcup_{k\geq n} E_n}$ are all bounded above by $\abs{f}$, then by DCT: 
+\begin{align*}
+	\lim_{n\to\infty}\int_{\bigcup_{k\geq n} E_n} \abs{f} &= \int_E\abs{f} = 0
+\end{align*}
+However, $\int_{E_n} \abs{f}\geq \ep > 0 \ \forall n$. This is a contradiction to the previous conclusion that the limit of the integral goes to 0. We therefore proved the proposition of absolute continuity.
 
 \end{document}

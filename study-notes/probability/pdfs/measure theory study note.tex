@@ -1,0 +1,340 @@
+\include{preamble}
+
+\title{\textbf{Measure Theory\\
+               Study Note}}
+\author{Tianqi Zhang}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\newpage
+\section{Preface}
+Welcome to my personal study notes on measure theory, with a particular emphasis on its applications in probability theory. To fully benefit from these notes, it is recommended that readers have a solid foundation in basic real analysis, including the following topics:
+\begin{itemize}
+    \item Sequence and function convergence
+    \item Point-set topology
+    \item Integration analysis
+\end{itemize}
+This document aims to provide a structured and concise exploration of measure theory, blending rigorous mathematical concepts with practical insights to support further studies in probability theory and related fields.
+
+
+\begin{flushright}
+-- Tianqi Zhang\\
+Dec 14th, 2024
+\end{flushright}
+
+
+\newpage
+\section{Measure}
+
+\subsection{Motivation and Definition of Outer Measure}
+Recall the definition of upper and lower Darboux sum in Riemann integral setting: 
+$$U(f) = \sum_{i=1}^N \sup_{x\in [x_i, x_{i+1}]}{f(x)} \cdot \underbrace{(x_{i+1} - x_i)}_{\text{length}}$$
+Definition of Riemann non-integrable involves the upper integral and the lower integral as two limits do not agree, which likely boils down to some partitions $[x_i, x_{i+1}]$ not well-defined. Therefore, to propose a fix, we are motivated to properly define the "length" of any general subset of $\R$. \\
+
+\begin{df}{Length}
+    The length $\ell(I)$ of some open interval $I\subset \R$ is a function defined by
+    $$\ell(I) =
+    \begin{cases}
+         b-a, & I = (b-a), a<b, a, b\in \R\\
+         0,  & I = \emptyset, \\
+         \infty & I = (-\infty, a), a\in \R\\
+         \infty & I = (a, \infty), a\in \R
+    \end{cases}$$
+\end{df}
+Then suppose $A\subset \R$. The size of $A$ can at most be the \textbf{sum of lengths of a sequence of open intervals $I$ whose union contains} $A$. Taking the infimum of such sums over all possible sequences of $I$, we obtain the outer measure of $A$, i.e.\\
+
+\begin{df}{Outer Measure, $\abs{A}$}
+    For $A\subset \R$,
+    $$\abs{A} \equiv \inf\qty{\sum_{k=1}^\infty \ell(I_k)\mid I_k \text{ open, } A\subset \bigcup_{k=1}^\infty I_k }$$
+\end{df}
+
+\begin{prop}{Finite sets have outer measure 0} 
+Proof: \ref{prof:finite set}
+\end{prop}
+
+\subsubsection{Properties of Outer Measure}
+\begin{prop}{Countable subsets of $\R$ have outer measure 0} 
+Proof: \ref{prof:countable set}
+\end{prop}
+
+\begin{prop}{Order preserving of outer measure}\\
+If $A\subset B\subset \R$, then $\abs{A}\leq\abs{B}$
+Proof: \ref{prof:order preserving}
+\end{prop}
+
+\begin{df}{Translation}
+    For any $A\subset \R, t\in \R$, the translation $t+A$ is defined by
+    \[t+A = \qty{t+a \mid a\in A}\]
+\end{df}
+Note that the length function should be translation invariant. Therefore, we obtain the proposition that outer measure is translation invariant. \\
+
+\begin{prop}{Outer measure is translation invariant}\\
+Suppose $t\in \R$ and $A\subset \R$, then $\abs{t+A} = \abs{A}$.
+\end{prop}
+
+\begin{prop}{Countable Sub-additivity of outer measure}
+Suppose $A_1, A_2, \dots, \subset \R$. Then 
+$$\abs{\bigcup_{k=1}^\infty A_k} \leq \sum_{k=1}^\infty \abs{A_k}$$	
+Note that this implies finite sub-additivity which could come handy in proof techniques: 
+$$\abs{A_1\cup \dots \cup A_n} \leq \abs{A_1} + \dots + \abs{A_n}$$
+\end{prop}
+
+\subsection{Outer Measure of Closed Bounded Interval}
+It is apparent for any closed interval $[a, b]$, we can construct a sequence of open cover $(a-\ep, b+\ep)$ and arbitrarily shrink $\ep$. We obtain $\abs{[a, b]} \leq b-a$. However, the other direction requires completeness of $\R$. \\
+
+\begin{prop}{$\abs{[a, b]} = b-a$}\\
+Suppose $a, b\in \R, a<b$. Then $\abs{[a, b]} = b-a$. 
+Proof: \ref{prof:closed interval}
+\end{prop}
+
+\begin{prop}{Non-trivial intervals are uncountable}\\
+	Every \textbf{interval} in $\R$ that contains at least two distinct terms is uncountable. 
+\end{prop}
+
+\begin{prop}{Non-additivity}\\
+	$\exists A, B\subset \R$ disjoint such that $\abs{A\cup B} \neq \abs{A} + \abs{B}$. 
+\end{prop}
+
+\subsection{Measurable Space and Functions}
+Countable additivity is desired for many scenario since we are mostly interested in proving theorems on limits. However, there is a fundamental problem of measure theory such as follows: \\
+
+\begin{prop}{Non-existence of extension of length to \text{all} subsets of $\R$}\\
+	There does not exist a function $\mu$ with all the following properties:\\
+	a). $\mu: \mathcal{P}(\R)\rightarrow [0, \infty]$\\
+	b). $\mu(I) = \ell(I) \forall$ open interval $I$ on $\R$\\
+	c). Countable additivity: $\mu\qty(\bigcup_k A_k) = \sum_k \mu(A_k)$ for all disjoint $A_k\subset \R$\\
+	d). Translation invariant: $\mu(t+A) = \mu(A) \ \forall A\subset \R$ and $t\in \R$. 
+\end{prop}
+
+\noindent The only relaxation we can make is $a).$ Instead of defining the function on the entirety of power set of $\R$, we consider a more practice subset of the power set such that the subset is closed under complementation and countable unions. We make the following definition: \\
+
+\begin{df}{Sigma algebra} \\
+	Suppose $X$ is a set and $S\subset \mathcal{P}(X)$. Then $S$ is a $\sigma$-algebra if the following conditions are satisfied:\\
+	1. $\emptyset \in S$\\
+	2. if $E\in S$, then $\overline E\in S$\\
+	3. if $\qty{E_k}_k\subset S$, then $\bigcup_k E_k \in S$
+\end{df}
+
+
+
+%%%%%%%%%%%%%%%%%% PROOF %%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\appendix
+
+\section{Proofs}
+\setcounter{subsection}{1}
+\subsection{Measure}
+
+\subsubsection{Finite sets have outer measure 0}\label{prof:finite set}
+
+\begin{prf*}
+Suppose $A = \qty{a_1, a_2, \dots, a_N}\subset \R$. It is equivalent to prove that $\forall \ep$, $\exists \qty{I_k}$ such that $A\subset \bigcup I_k$ and $\sum \ell(I_k) <\ep$. Therefore, let 
+$$I_k = \begin{cases}
+    \qty(a_k - \frac{\ep}{4N}, a_k + \frac{\ep}{4N}), & k\leq N\\
+    \emptyset, & k>n
+\end{cases}$$
+we have $A\subset \bigcup I_k$, and we have the sum $\sum_{k=1}^\infty I_k = \sum_{k=1}^n \frac{\ep}{2n} = \frac{\ep}{2} < \ep$. Therefore, $\abs{A} = 0$.
+\end{prf*}
+
+\subsubsection{Countable sets have outer measure 0}\label{prof:countable set}
+
+\begin{prf*}
+Suppose $A = \qty{a_1, a_2, \dots}\subset \R$. 
+With similar idea, for any $\ep$, construct $I_k$ to be
+$$I_k = \qty(a_k -\frac{\ep}{2^{k+2}}, a_k + \frac{\ep}{2^{k+2}})$$
+Then each $a_k\in I_k$, which implies $A\subset \bigcup I_k$. Now consider the infinite sum:
+\begin{align*}
+    \sum_{k=1}^\infty I_k &= \sum_{k=1}^\infty\frac{\ep}{2^{k+1}}\\
+                          &= \frac{\ep}{2}\\
+                          &< \ep
+\end{align*}
+Therefore, $\abs{A} = 0$.
+\end{prf*}
+
+
+\subsubsection{Outer measure is order preserving}\label{prof:order preserving}
+\begin{prf*}
+Since $A\subset B$, then any open cover for $A$ would be an open cover for $B$. Taking infimum over all sequences of open covers of $B$, we have $\abs{A}\leq \abs{B}$. 
+\end{prf*}
+
+\subsubsection{Outer Measure is translation invariant}
+\label{prof:translation invariant}
+\begin{prf*}
+Suppose $t\in \R, A\subset \R$ and suppose $\qty{I_k}$ covers $A$. Then $\qty{t+I_k}$ should be a set of cover for $t+A$, we obtain the following inequality: 
+$$\abs{t+A} \leq \sum_{k} \ell(t+I_k)$$
+Since $\ell$ is translational invariant, we have $\sum_{k} \ell(t+I_k) = \sum_{k} \ell(I_k)$. Taking the infimum on both sides: 
+$$\abs{t+A} \leq \abs{A}$$
+
+Now consider $\qty{t+I_k}$ to be a set of open cover for $t+A$ and $A = -t+(t+A)$, we have 
+
+\begin{align*}
+	\abs{A} &\leq \sum_{k} \ell(-t + (t+I_k)) = \sum_{k} \ell (t+I_k)\\
+	\inf_{t+I_k} \abs{A} &\leq	\inf_{t+I_k}  \sum_{k} \ell (t+I_k)\\
+	\abs{A} &\leq \abs{t+A}
+\end{align*}
+We have $\abs{A} = \abs{t+A}$. 
+\end{prf*}
+
+
+\subsubsection{Sub-additivity}
+\label{prof:subadditivity}
+\begin{prf*}
+Suppose for each $A_k$, we have a sequence of open cover $\qty{I_{ik}}_i$ such that it is close enough above to the outer measure. 
+$$\sum_{i} \ell(I_{ik}) \leq \frac{\ep}{2^k} + \abs{A_k}$$
+Then summing both sides over $k$, we have
+\begin{align*}
+	\sum_{k}\sum_{i} \ell(I_{ik}) &\leq \sum_{k} \frac{\ep}{2^k} + \abs{A_k}\\
+	\sum_{k}\sum_{i} \ell(I_{ik}) &\leq \ep + \sum_{k}\abs{A_k}
+\end{align*}
+Observe that the left hand side $\cup_{i, k} I_{ik}$ is an open cover for the entire union $\cup_k A_k$, then we have
+$$ \abs{\bigcup_k A_k} \leq \sum_{k}\sum_{i} \ell(I_{ik}) \leq \ep + \sum_{k}\abs{A_k}$$
+$$\abs{\bigcup_k A_k} < \abs{A_k}$$
+\end{prf*}
+
+\subsubsection{Closed Interval Length}
+\label{prof:closed interval}
+
+\begin{prf*}
+One direction is trivially proven. Now for $\abs{[a, b]} \leq b - a$, recall Heine-Borel theorem. $\exists \qty{I_k}_{k=1}^K$ such that $[a, b]\subset \qty{I_k}_{k=1}^K$, which implies that 
+$$\abs{[a,b]} \leq \sum_{k=1}^K \ell(I_k)$$
+We now need to show that the sum is bounded below by $b-a$, by induction. Note that the statement is true when $K = 1$. Now assume that above holds for $K$, now consider a new set of open cover $\qty{I_k}_{k=1}^{K+1}$ for $[a, b]$. Without loss of generality, we assume that $b\in I_{K+1} \equiv (c, d)$ with $c, d\in \R$. If $c<a$, $I_{K+1}$ alone covers $[a, b]$ and the proof is finished. So consider $a<c<b<d$.
+
+One immediate conclusion is that the sub-interval $[a, c]$ is covered by $\qty{I_k}_{k=1}^{K}$, and by our induction hypothesis, 
+\begin{align*}
+	\sum_{k=1}^K I_k &\geq c-a\\
+	\sum_{k=1}^{K+1} I_k &\geq c-a +\ell(I_{K+1})\\
+	&\geq c-a+d-c = d-a\\
+\abs{[a, b]} \geq \sum_{k=1}^{K+1} I_k &\geq b-a
+\end{align*}
+Therefore, we have both directions such that $\abs{[a, b]} = b-a$. 
+\end{prf*}
+
+%%%%%%%%%%%%%%%%%% PRACTICES %%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Practices}
+\setcounter{subsection}{1}
+\subsection{Measure}
+
+
+%\newpage
+%\section{This is the section name}
+%\subsection{This is the subsection name}
+%
+%\begin{thm}{Name of thm}
+%	This is a theorem. 
+%\end{thm}
+%\begin{thm*}
+%	
+%\end{thm*}
+%
+%\begin{df}{Name for df}
+%	This is a definition. 
+%\end{df}
+%\begin{df*}
+%	
+%\end{df*}
+%
+%\begin{eg}{}
+%	This is an example
+%	\begin{sol}
+%		
+%	\end{sol}
+%	\begin{sol*}
+%		
+%	\end{sol*}
+%\end{eg}
+%
+%\begin{rmk}
+%	This is a remark
+%\end{rmk}
+%
+%\begin{prf}
+%	This is a proof
+%\end{prf}
+%\begin{prf*}
+%	
+%\end{prf*}
+%\begin{dis}
+%	
+%\end{dis}
+%\begin{dis*}
+%	
+%\end{dis*}
+%
+%\begin{cor}{}
+%	This is a corollary
+%\end{cor}
+%
+%\begin{lem}{}
+%	This is a lemma
+%\end{lem}
+%
+%\begin{prop}{}
+%	This is a proposition
+%\end{prop}
+%
+%\begin{conj}{}
+%	This is a conjecture
+%\end{conj}
+%
+%\begin{ax}{}
+%	This is an axiom.
+%\end{ax}
+%
+%\begin{clm}
+%	
+%\end{clm}
+%\begin{clm*}
+%	
+%\end{clm*}
+
+%\begin{lstlisting}[language = Matlab, title = {Answer.m}]
+%% Plot function f(x) = 2*x^3 - x - 2
+%ezplot('2*x^3-x-2', [0, 2])
+%hold on
+%plot([0, 2], [0, 0], 'r')
+%\end{lstlisting}
+%
+%\begin{lstlisting}[language = Python]
+%def __self__(self):
+%for i in range(10):
+%	print(f"This number is {i}.")
+%\end{lstlisting}
+%
+%\begin{lstlisting}[language = java]
+%public static void main(String[] args) {
+%	System.out.println("Hello World!"); // comment
+%}
+%\end{lstlisting}
+
+%\begin{algorithm}
+%\caption{Bisection Algorithm}
+%\SetKwData{In}{\rmfamily\textbf{in}}\SetKwData{To}{\rmfamily\textbf{to}}\SetKwData{And}{\rmfamily{\textbf{and}}}\SetKwData{Or}{\rmfamily{\textbf{or}}}\SetKwData{Stop}{\rmfamily{\textbf{stop}}}\SetKwData{Break}{\rmfamily{\textbf{break}}}
+%\SetKwComment{Comment}{/* }{ */}
+%\DontPrintSemicolon
+%\KwIn{$a,b,M,\delta,\epsilon$\;$u\leftarrow f(a)$\;$b\leftarrow f(b)$\;$e\leftarrow b-a$}
+%\KwOut{output}
+%\BlankLine
+%\Begin{
+%	\If{$\text{sign}(u)=\text{sign}(v)$}{\Stop}
+%	\For{k=1 \To M}{
+%		$e\leftarrow e/2$\;
+%		$c\leftarrow a+e$\;
+%		$w\leftarrow f(c)$\;
+%		\Return $k,c,w,e$\;
+%		\If{$|e|<\delta$\Or$|w|<\epsilon$}{\Stop}
+%		\eIf{$\text{sign}(u)\neq=\text{sign}(v)$}{
+%			$b\leftarrow c$\;
+%			$v\leftarrow w$\;
+%		} {
+%			$a\leftarrow c$\;
+%			$u\leftarrow w$\;
+%		}
+%	}
+%}
+%\end{algorithm}
+\end{document}
