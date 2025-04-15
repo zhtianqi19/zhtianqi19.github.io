@@ -39,6 +39,7 @@ I hope you find this document insightful as you navigate the beauty and rigor of
 <!-- - [Central Limit Theorem](pdfs/proofs-clt.pdf) -->
 - [Poisson from Binomial](pdfs/proofs-poisson.pdf)
 - [Chebyshev's Inequality](pdfs/proofs-chebyshev.pdf)
+- [Radon-Nikodym Theorem](pdfs/proofs-radon-nikodym.pdf)
 ---
 
 For full references and background reading, see:

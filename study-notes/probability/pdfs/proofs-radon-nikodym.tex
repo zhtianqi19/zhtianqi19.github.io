@@ -1,0 +1,151 @@
+\include{preamble}
+
+\title{\textbf{% ECON 620\\
+               Probability and Statistical Inference}}
+\author{Tianqi Zhang\\
+Emory University}
+\date{Apr 17th 2025}
+
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{1} % Only show sections in the table of contents
+
+
+\begin{thm}{Radon-Nikodym Theorem}
+Let $(X, \mathcal{M})$ be a measurable space, and let $\nu$ and $\mu$ be $\sigma$-finite measures on $(X, \mathcal{M})$. Then there exists a unique decomposition
+$$\nu = \nu_a + \nu_s$$
+such that:
+\begin{enumerate}
+	\item $\nu_a \ll \mu$ (absolutely continuous part),
+	\item $\nu_s \perp \mu$ (singular part).
+\end{enumerate}
+Moreover, there exists a unique (up to $\mu$-a.e. equivalence) measurable function $f \geq 0$ such that
+$d\nu_a = f \, d\mu$.
+We denote this density function as the Radon-Nikodym derivative:
+$$f = \frac{d\nu}{d\mu}$$
+\end{thm}
+
+To prove this, we firstly need Riesz representation theorem for Hilbert Space:\\
+
+\begin{thm}{Riesz Representation Theorem (Hilbert Space)}
+Given $\mathcal{H}$ and a continuous linear functional
+$$\ell: \mathcal H \to \mathbb C$$
+Then $\exists!$ a vector $w\in \mathcal{H}$ such that $\forall v\in \mathcal H$, 
+$$\ell(v) = \bra{v}\ket{w}$$
+\end{thm}
+ 
+\begin{prf}
+We start by a proposition as follows: 
+\begin{prop}{}
+For a closed subspace $S\subset \H$, we have a decomposition
+$$\H = S \oplus S^\perp$$	
+Such that $S^\perp \equiv \qty{w\in \H: \bra{v}\ket{w} = 0, \ v\in S}$. Given $u\in \H$, set
+$$d(u, S) \equiv \inf \qty{\norm{u-v}: v\in S}$$
+Then there exists a sequence $\qty{v_n}$ such that $\norm{u-v_n} \to d$. \\
+
+By the law of parallelogram, for any $v_n, v_m$ in the sequence, 
+\begin{align*}
+	\norm{v_n-v_m}^2 &= 2\norm{u-v_n}^2 + 2\norm{u-v_m}^2 -  4\norm{u-\frac{v_n+v_m}{2}}^2\\
+	\lim_{n, m\to \infty} \norm{v_n-v_m}^2 &\leq 2d^2 + 2d^2 - 4d^2 \leq 0
+\end{align*}
+Therefore $\qty{v_n}$ is Cauchy. Since $S$ is closed, the limit exists and is in $S$, we denote it by $v$.\\
+
+%Now let $w = u-v$, we have $\bra{v}\ket{w} = 0$. We have proved the proposition. 
+
+
+
+Define $w \equiv u - v$. We claim $w \in S^\perp$. 
+Indeed, for any $s \in S$, consider 
+\[
+   \|u - s\|^2 
+   \;=\; \|(v + w) - s\|^2
+   \;=\; \|(v - s) + w\|^2.
+\]
+
+Since $v$ is the chosen minimizer in $S$, the first-order condition for minimality gives 
+\(\langle w, s-v\rangle = 0\). 
+In particular, taking $s = v$ yields $\langle w, v-v\rangle=0$ which is trivial, 
+but more importantly, by choosing $s$ to approach $v$ suitably, 
+we obtain $\langle w, s\rangle = 0$ for any $s\in S$. Thus $w$ is orthogonal to every vector in $S$, i.e.\ $w \in S^\perp$.
+\end{prop}\
+
+\textbf{Back to Riesz:} We are given a continuous and linear functional $\ell: \H \to \C$. Take any $S\subset \H$ as the kernel of $\ell$, i.e
+$$S \equiv \ker(\ell) = \qty{v\in \H: \ell(v)=0}$$ 
+Then $\ell$ is linear implies that $S$ is a subspace (by Kernel), and $\ell$ is continuous implies that $S$ is closed (by pre-image of the kernel). Then we have a decomposition by the proposition above: 
+$$\H = S \oplus S^\perp$$
+Note that it would be trivial if either $S$ or $S^\perp$ is the empty set. Then we can choose $w = 0$ and the theorem is proven. \\
+
+Therefore, suppose that neither is the empty set. We fix any $w\in S^\perp$ with $\norm{w_1} =1$. We take $v\in \H$ and observe $v\ell(w_1) - w_1\ell(v)\in S$ since $S$ is closed. Then by orthogonality, 
+$$\bra{v\ell(w_1) - w_1\ell(v)}\ket{w} = 0$$
+We extend the expression into: 
+$$\bra{v}\ket{\overline{\ell(w_1)}w_1} - \ell(v)\norm{w_1}^2 = 0$$
+And finally: 
+$$\ell(v) = \bra{v}\ket{\overline{\ell(w_1)}w_1}$$
+We define $w\in S^\perp$ to be $w \equiv \overline{\ell(w_1)}w_1$. We have shown the existence of $w\in S^\perp$ in this context. \\
+
+As for uniqueness, assume $w'\in S^\perp$ that also suffices the above assumptions, then for all $v\in \H$. 
+\begin{align*}
+	\ell(v) - \ell(v) &= \bra{v}\ket{w}-\bra{v}\ket{w'}\\
+					0 &= \bra{v}\ket{w-w'}
+\end{align*}
+We choose $v = w-w'$, then $\norm{w-w'}^2 =0$. By positive definite of the norm, we have $w = w'$. We have shown the uniqueness of such $w$.\\
+
+
+\textbf{Back to R-N:} Let $(X, \mathcal{M})$ be a measure space with $\sigma$-finite measure $\mu, \nu$. Let $\rho = \mu + \nu$. Since both are sigma finite, $\rho$ is also a properly defined measure on $X$. We define $\ell: \mathcal{L}^2(X, d\rho)\to \C$ by 
+$$\ell(\psi) \equiv \int_X \psi \, d\nu$$
+Then since $\nu \leq \rho$,
+$$\abs{\ell(\psi)} = \bra{1}\ket{\psi}_{\mathcal L^2(X, d\rho)} \leq \underbrace{\norm{1}}_{<\infty}\norm{\psi}_{\mathcal L^2(X, d\rho)} \leq C \norm{\psi}_{\mathcal L^2(X, d\rho)}$$
+Then $\ell$ is continuous. \\
+
+By Riesz, $\exists g\in \mathcal L^2(X, d\rho)$ such that $\ell(\psi) = \bra{\psi}\ket{g} = \int_X \psi \overline g\, d\rho$. In particular for any $E\subset X$, we can express its measure 
+$$\nu(E) = \ell (\chi_E) = \int_E \overline g\, d\rho$$ 
+Then $g$ is a real and non-negative function a.e. on $\rho$. \\
+
+Also, $\nu(E) \leq \rho(E)$, we have
+\begin{align*}
+	\nu (E) = \int_E d\nu &\leq \int_E d\rho \quad \forall E\in \mathcal M\\
+	\int_E g\, d\rho &\leq \int_E d\rho 
+\end{align*}
+We have $g\leq 1$ a.e. on $\rho$. \\
+
+Now given $\psi\in \mathcal L^2(X, d\rho)$. 
+\begin{align}
+	\ell(\psi) &= \int_X \psi gd\rho \notag \\
+    \int_X \psi \, d\nu &= \int_X \psi g\, d\mu + \int_X \psi g\, d\nu \notag\\
+	\int_X \psi (1-g) \, d\nu &= \int_X \psi g\, d\mu \label{star}
+\end{align}
+As $g: X\to [0, 1]$, we can define the set $A\equiv \qty{g<1}$ and $B\equiv \qty{g=1}$. We have accordingly the two measures $\nu_a(E) \equiv \nu(A\cap E)$ and $\nu_s(E) \equiv \nu(B\cap E)$. By \eqref{star} we have
+\begin{align*}
+	\mu(B) &= \int_B\, d\mu\\
+		   &= \int_X\chi_B g\, d\mu \quad \text{as }g = 1\text{ on }B\\
+		   &= \int_X \chi_B (1-g) \, d\nu = 0 
+\end{align*}
+Therefore, the measure $\mu$ cannot see $B$. We have $\nu_s \perp \mu$ proving the first half of the theorem. \\
+
+Revisit \eqref{star}, let $\psi \equiv \chi_E(1+g+g^2+\dots + g^n)$ for any $E\in \mathcal M$. \eqref{star} equals to the following:  
+\begin{align*}
+	\int_E\qty(1-g^{n+1})\, d\nu &= \int_E g\qty(1+\dots + g^n)\, d\mu\\
+	\int_{E\cap A} 1-g^{n+1}\, d\nu &= \int_E  g\qty(1+\dots + g^n)\, d\mu
+\end{align*}
+If we take $n\to \infty$, \\
+
+The left hand side will be dominated by $\nu_a(E)$ since $g<1$ on $A$. Then by DCT, we have the left as $\int_E \, d\nu_a$. 
+
+The right hand side will converge to $\int_E \frac{g}{1-g}\, d\mu$ as a geometric series. We have the following expression: 
+$$\nu_a(E) = \int_E \frac{g}{1-g} \, d\mu$$
+We define $f\equiv \frac{g}{1-g}$. Therefore, we have the Radon-Nikodym derivative. 
+
+\end{prf}
+
+
+%\begin{rmk}
+% 
+%\end{rmk}
+
+
+ 
+ 
+ 
+
+
+\end{document}
