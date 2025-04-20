@@ -138,12 +138,16 @@ We define $f\equiv \frac{g}{1-g}$. Therefore, we have the Radon-Nikodym derivati
 \end{prf}
 
 
-%\begin{rmk}
-% 
-%\end{rmk}
+\begin{rmk}{Conditional Expectation:}\\
+The Radon-Nikodym theorem underlies the modern theory of conditional expectation, a foundational concept in machine learning. 
 
+Given data \( X \) sampled from a probability space \( (\Omega, \mathcal{F}, P) \), the observed information induces a sub-\(\sigma\)-algebra \( \mathcal{G} \subset \mathcal{F} \), often written as \( \mathcal{G} = \sigma(X) \). The conditional expectation of an integrable random variable \( Y \) given \( \mathcal{G} \) is defined as the unique \( \mathcal{G} \)-measurable function \( \mathbb{E}[Y \mid \mathcal{G}] : \Omega \to \mathbb{R} \) such that
+\[
+\int_A \mathbb{E}[Y \mid \mathcal{G}] \, dP = \int_A Y \, dP \quad \text{for all } A \in \mathcal{G}.
+\]
 
- 
+This implies that the function \( \mathbb{E}[Y \mid \mathcal{G}] \) is the unique (up to $P$-a.e.) Radon-Nikodym derivative of the signed measure \( \nu(A) = \int_A Y \, dP \) with respect to \( P|_{\mathcal{G}} \), the restriction of \( P \) to \( \mathcal{G} \). Thus, conditional expectation emerges naturally as a Radon-Nikodym derivative and represents the best \( \mathcal{G} \)-measurable approximation to \( Y \).
+\end{rmk}
  
  
 
