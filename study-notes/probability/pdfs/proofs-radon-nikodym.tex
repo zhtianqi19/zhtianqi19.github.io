@@ -139,6 +139,12 @@ We define $f\equiv \frac{g}{1-g}$. Therefore, we have the Radon-Nikodym derivati
 
 
 \begin{rmk}{Conditional Expectation:}\\
+In machine learning, the fundamental problem is a minimization of the square error: 
+$$h^* = \argmin_{h \in \H} \E\qty[(Y-h(X))^2]$$
+where:
+$\H$ is a functional space (often Hilbert space). $Y$ is the target or output, $X$ is the input, and the expectation is over the joint distribution of $(X, Y)$ induced by some measure $P$ on the product space $(\Omega, \mathcal{F})$. The solution of such problem is uniquely given by
+$$h^*(X) = \E[Y|X]$$
+
 The Radon-Nikodym theorem underlies the modern theory of conditional expectation, a foundational concept in machine learning. 
 
 Given data \( X \) sampled from a probability space \( (\Omega, \mathcal{F}, P) \), the observed information induces a sub-\(\sigma\)-algebra \( \mathcal{G} \subset \mathcal{F} \), often written as \( \mathcal{G} = \sigma(X) \). The conditional expectation of an integrable random variable \( Y \) given \( \mathcal{G} \) is defined as the unique \( \mathcal{G} \)-measurable function \( \mathbb{E}[Y \mid \mathcal{G}] : \Omega \to \mathbb{R} \) such that

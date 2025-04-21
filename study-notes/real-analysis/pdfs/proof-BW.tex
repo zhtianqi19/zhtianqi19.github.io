@@ -1,0 +1,119 @@
+\documentclass[12pt, letterpaper]{article}
+\input{preamble}
+
+\title{Proof: Bolzano-Weierstrass Theorem\\
+Real Analysis} 
+\date{Apr. 17th 2025}
+\begin{document}
+
+\maketitle
+\begin{thm}{Bolzano-Weierstrass}
+In a metric space $\M$, $\forall A\subset M$, $A$ is compact if and only if $A$ is sequentially compact
+\end{thm}
+
+
+\begin{prf*}
+To begin with, we start by marking some necessary lemmas: \\
+
+\section{Lemmas}
+\begin{lem}{Let $A \subset M$ be a compact subset of a metric space $M$. Then $A$ is closed} 
+\end{lem}
+
+We will show that the complement $A^C = M \setminus A$ is open.
+
+Fix any point $x \in A^C$. For each $n \in \N$, define the open set
+$$U_n = \qty{ y \in M : d(y,x) > \frac{1}{n} }$$
+Each $U_n$ is open in $M$, and we claim that $\{ U_n \}{n=1}^\infty$ forms an open cover of $A$. To see this, take any point $a \in A$. Since $a \neq x$ (because $x \in A^C$), we have $d(a,x) = \delta > 0$. Then for any $n$ such that $\frac{1}{n} < \delta$, it follows that $d(a,x) > \frac{1}{n}$, i.e., $a \in U_n$. Therefore, every point $a \in A$ lies in some $U_n$, and hence
+$$A \subset \bigcup_{n=1}^\infty U_n$$
+
+Since $A$ is compact, there exists a finite subcover, say $A \subset \bigcup_{i=1}^N U_i$. But since $U_i \subset U_N$ for all $i \leq N$ (because $d(y,x) > 1/i$ implies $d(y,x) > 1/N$ when $i \leq N$), we have
+$$A \subset U_N$$
+Taking complements, we obtain
+$$U_N^C \subset A^C$$
+but $U_N^C = \qty{ y \in M : d(y,x) \leq \frac{1}{N} }$ is a closed ball centered at $x$, and in particular, it contains $x$. This shows that for every $x \in A^C$, there exists an open neighborhood $U = M \setminus U_N^C$ of $x$ contained in $A^C$. Hence, $A^C$ is open, so $A$ is closed.\\
+
+
+\begin{lem}{Let $M$ be a compact metric space, and let $B \subset M$ be closed. Then $B$ is compact.}\\
+
+Let $U_i, i\in I$ be an open cover for $B$, that is
+$$B\subset \bigcup_{i\in I} U_i$$
+Since $B$ is closed, the complement $B^C$ is open. Then consider the union; 
+$$\bigcup_{i\in I} U_i\cup B^C$$
+is also an open set and moreover an open cover for $M$. Since $M$ is compact, there exists a finite subcover $\bigcup_{i=1}^N U_i\cup B^C\supset M$. Then we take $B^C$ away on both sides since $B\cap B^C = \varnothing$ meaning $B^C$ does not cover anything for $B$. That makes $\bigcup_{i=1}^N U_i$ a finite subcover for $B$. Therefore, $B$ is compact. 
+\end{lem}
+
+\section{Sufficiency (compact $\Rightarrow$ sequentally compact)}
+\textbf{Step 1: Set up and reduction}\\
+
+Suppose that $A$ is compact, we need to show that for any sequence $\qty{x_k}$, there exists a converging subsequence whose limit is in the set. \textcolor{red}{Suppose to the contrary} that $A$ is not sequentially compact, i.e. $x_k$ has no converging subsequence. Without loss of generality, assume all points are distinct in $\{x_k\}$.\\
+
+
+\noindent \textbf{Step 2: For all $k = 1, 2, \ldots, \exists r>0$ such that $x_j\notin D(x_k, r) \ \forall j\neq k$}. \textcolor{teal}{Intuition: if points are not accumulating, then they have to be isolated.}\\
+
+
+Suppose otherwise that $\exists k$ such that $\forall \ep>0, \exists x_j\in D(x_k, \ep)$. We fix $\ep = \frac{1}{m}$ and obtain $\{x_{j_m}\}$ such that $x_{j_m} \in D(x_k, \frac{1}{m})$. Then $x_{j_m}\rightarrow x_k$ which is a contradiction to the assumption that $x_k$ has no converging subsequence. \\
+
+\textbf{Step 3: Finish up}\\
+
+Consider $B = \{x_k|k = 1, 2, \ldots\}\subset A$. By Step 2, there should not be any accumulation point, therefore, $\mathrm{AC}(B) = \varnothing$. Therefore, $B$ contains all its accumulation points trivially which implies that $B$ is closed, and lemma 2 implies that $B$ is compact.
+
+Now consider the collection of open sets $\mathcal{U} = \{ \{x_k\} \}_{k \in \mathbb{N}}$. Since each point $x_k$ is isolated (by construction in Step 2), the singleton set $\{x_k\}$ is open in the subspace topology on B. Thus, $\mathcal{U}$ is an open cover of B in the subspace topology.
+
+However, $\mathcal U$ does not have a finite subcover for $B$. Therefore, this is a contradiction, and $\exists$ a converging subsequence for $x_k$, which implies that $A$ is sequentially compact. 
+
+
+\section{Necessity (sequentially compact $\Rightarrow$ compact)}
+Suppose that $A\subset M$ is sequentially compact. Show that $A$ is compact. Let $\{U_i\}_{i\in I}$ be an open cover for $A$. 
+
+\begin{clm}{ $\exists r>0$ such that $\forall y\in A, B(y, r)\subset U_i$ for some $i$.}
+\textcolor{teal}{Intuition: there’s a uniform ball size that fits entirely within at least one set in the open cover at every point.}
+\end{clm}
+
+Suppose not. Then for every $n \in \mathbb{N}$, let $r_n = \frac{1}{n}$. By assumption, for each $r_n$, there exists a point $y_n \in A$ such that for all $i \in I$,
+\[
+B(y_n, r_n) \nsubseteq U_i.
+\]
+
+Since A is sequentially compact, the sequence $\{y_n\} \subset A$ has a convergent subsequence $y_{n_k} \to z \in A$. Since $\{U_i\}{i \in I}$ is an open cover of $A$, there exists some $i_0 \in I$ such that $z \in U{i_0}$.
+
+Because $U_{i_0}$ is open, there exists $\varepsilon > 0$ such that $B(z, \varepsilon) \subset U_{i_0}$. By convergence, there exists $K \in \mathbb{N}$ such that for all $k \geq K$, we have
+$$d(y_{n_k}, z) < \frac{\varepsilon}{2}, \quad \text{and} \quad r_{n_k} = \frac{1}{n_k} < \frac{\varepsilon}{2}$$
+Then for such $k$, we have
+$$B(y_{n_k}, r_{n_k}) \subset B(z, \varepsilon) \subset U_{i_0}$$
+which contradicts our assumption that \( B(y_n, r_n) \nsubseteq U_i \) for any $i \in I$. Therefore, the claim is proven. \\
+
+\begin{clm}{ $A$ is totally bounded.}
+\end{clm}
+
+Suppose not, then $\exists \ep>0$ such that $A$ cannot be covered by finite number of balls radius $\ep$. Then we can choose $y_1\in A, y_2\in A\backslash B(y_1, \ep), \cdots, y_{k+1} \in A \backslash \bigcup_{i=1}^{k}B(y_i, \ep)$.
+
+Observe that $d(y_i, y_j)\geq \ep \ \forall i\neq j$ for this chosen $\ep$. Then $y_n$ is not Cauchy which implies that $y_n$ does not have a converging subsequence. This is a contradiction to the previous assumption that $A$ is sequentially compact. The claim is proven. 
+
+
+To wrap up the proof, by Claim 3.1, $\exists r$ such that $\forall y\in A, B(y, r)\subset U_i$ for some $i$. By Claim 3.2, $\exists \{y_1, y_2, \cdots, y_m\}\in A$ such that $A\subset \bigcup_{i=1}^{m} B(y_i, r)$. Also by Claim 3.1, $B(y_{i_j}, r) \subset U_{i_j}$ for some $i_j$. Therefore, $\{U_{i_j}\}_{j=1}^{m}$is a finite subcover for $A$. $A$ is compact. 
+
+Now apply total boundedness with $\varepsilon = r$. There exist points $\{x_1, \dots, x_m\} \subset A$ such that
+$$A \subset \bigcup_{j=1}^{m} B(x_j, r)$$
+
+By claim 3.1, each ball $B(x_j, r) \subset U_{i_j}$ for some $i_j \in I$. Then
+$$A \subset \bigcup_{j=1}^{m} B(x_j, r) \subset \bigcup_{j=1}^{m} U_{i_j}$$
+
+Thus, $\{U_{i_j}\}_{j=1}^{m}$ is a finite subcover of $A$. Therefore, $A$ is compact.
+
+
+\end{prf*}
+
+
+\begin{rmk}{B-W Theorem:}\\
+The Bolzano–Weierstrass theorem is a foundational result in real analysis and topology to characterize compactness in metric spaces.
+
+This highlights a central philosophy in analysis: Compactness enables global control using only local data.
+
+One intuitive interpretation is that a sequentially compact set “does not let sequences escape”: every sequence has a cluster point that remains within the set. This is particularly important in function spaces later, where we often work with approximating sequences and need to ensure their limits stay within a prescribed domain.
+\end{rmk}
+
+
+
+
+\end{document}
+

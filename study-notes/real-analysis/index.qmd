@@ -6,15 +6,6 @@ format: html
 Content coming soon. This page will include some proofs on sequences, limits, continuity, point-set topology, and foundational integration theory. The primary reference is [_Elementary Classical Analysis_ by Marsden](https://books.google.com/books/about/Elementary_Classical_Analysis.html?id=mMBY5jdjGfoC&source=kp_book_description).
 
 
-### Chapters
-
-<!-- - [The Real Line and Euclidean Space](pdfs/ch1.pdf)
-- [The Topology of Euclidean Space](pdfs/ch2.pdf)
-- [Compact and Connected Sets](pdfs/ch3.pdf)
-- [Continuous Mappings](pdfs/ch4.pdf)
-- [Uniform Convergence](pdfs/ch5.pdf)
-- [Differential Mappings](pdfs/06-differential.pdf)
-- [The Inverse and Implicit Function Theorems](pdfs/07-implicit.pdf)
-- [Integration](pdfs/08-integration.pdf)
-- [Fubini’s Theorem and Change of Variables](pdfs/09-fubini.pdf)
-- [Fourier Analysis](pdfs/10-fourier.pdf) -->
+### Important Proofs: 
+- [Bolzano-Weierstrass Theorem](pdfs/proof-BW.pdf)
+<!-- - [Heine-Borel Theorem](pdfs/proof-HB.pdf) -->
