@@ -6,7 +6,11 @@ nav: true
 nav_order: 3
 ---
 
-Notes from my first-year PhD mathematics sequence at USC.
+*Last updated: March 28, 2026*
+
+> Welcome to my study notes from Real Analysis II - Measure Theory. The notes cover measure and integration theory from the ground up: Lebesgue measure, convergence theorems, L^p spaces, basics of Hilbert spaces and Fourier analysis, differentiation theory, and the abstract framework of product measures and the Radon--Nikodym theorem, and one chapter in applications to probability theory including the Law of Large Numbers, the Central Limit Theorem, and conditional expectation. They are written to be mathematically precise, with proofs of major results, and are intended primarily as a personal reference. Errors and omissions are my own. Enjoy.
+
+---
 
 ## Real Analysis & Measure Theory
 
